@@ -6,13 +6,11 @@ import '../models/transaction_model.dart';
 import '../providers/transaction_provider.dart';
 import '../widgets/thousand_separator_input_formatter.dart';
 
-/// Màn hình thêm/sửa giao dịch.
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key, this.initialTransaction});
 
   static const routeName = '/add-transaction';
 
-  /// Nếu truyền vào thì màn hình ở chế độ "Sửa giao dịch".
   final TransactionModel? initialTransaction;
 
   @override
@@ -22,7 +20,7 @@ class AddTransactionScreen extends StatefulWidget {
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  bool _isIncome = false; // false = Chi, true = Thu
+  bool _isIncome = false;
   String? _selectedCategory;
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
@@ -49,7 +47,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     final tx = widget.initialTransaction;
 
     if (tx != null) {
-      // Chế độ sửa: fill sẵn dữ liệu.
       _isIncome = tx.isIncome;
 
       final currentCategories = _currentCategories;
@@ -62,7 +59,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       _amountController.text = formatter.format(tx.amount);
       _noteController.text = tx.note ?? '';
     } else {
-      // Chế độ thêm mới.
       _selectedCategory = _currentCategories.first;
     }
   }
@@ -116,7 +112,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       await provider.addTransaction(tx);
     }
 
-    // Đóng màn hình, trả về transaction nếu caller muốn dùng.
     Navigator.of(context).pop(tx);
   }
 
@@ -254,7 +249,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   }
 }
 
-/// Nút segmented control đơn giản dùng cho lựa chọn Chi/Thu.
 class _SegmentButton extends StatelessWidget {
   const _SegmentButton({
     required this.label,

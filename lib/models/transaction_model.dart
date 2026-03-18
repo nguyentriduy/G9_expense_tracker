@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 
-/// Domain model đại diện cho một giao dịch tài chính.
 class TransactionModel {
   final String id;
-  final int amount; // Đơn vị: VNĐ, lưu dạng số nguyên để tránh lỗi float
-  final bool isIncome; // true = Thu (TIỀN VÀO), false = Chi (TIỀN RA)
+  final int amount;
+  final bool isIncome;
   final String categoryName;
   final String? note;
-  final DateTime date; // Bao gồm cả ngày + giờ
+  final DateTime date;
 
   const TransactionModel({
     required this.id,
@@ -18,10 +17,8 @@ class TransactionModel {
     required this.date,
   });
 
-  /// Trả về ngày (không có giờ) để phục vụ group theo ngày.
   DateTime get dateOnly => DateTime(date.year, date.month, date.day);
 
-  /// Chuyển model sang JSON để lưu local (SharedPreferences / API).
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -33,7 +30,6 @@ class TransactionModel {
     };
   }
 
-  /// Tạo model từ JSON.
   factory TransactionModel.fromJson(Map<String, dynamic> json) {
     return TransactionModel(
       id: json['id'] as String,
@@ -46,7 +42,6 @@ class TransactionModel {
   }
 }
 
-/// Cấu trúc dữ liệu sau khi đã group theo ngày để render UI.
 class TransactionGroupByDate {
   final DateTime date;
   final List<TransactionModel> transactions;
@@ -57,11 +52,9 @@ class TransactionGroupByDate {
   });
 }
 
-/// Hàm tiện ích: nhận danh sách phẳng và group theo ngày.
 List<TransactionGroupByDate> groupTransactionsByDate(
   List<TransactionModel> items,
 ) {
-  // Map tạm: key là ngày, value là list giao dịch trong ngày đó
   final Map<DateTime, List<TransactionModel>> grouped = {};
 
   for (final tx in items) {
@@ -69,7 +62,6 @@ List<TransactionGroupByDate> groupTransactionsByDate(
     grouped.putIfAbsent(key, () => <TransactionModel>[]).add(tx);
   }
 
-  // Chuyển map thành list và sort theo ngày mới nhất -> cũ nhất
   final result = grouped.entries
       .map(
         (e) => TransactionGroupByDate(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Thanh filter gồm "Từ ngày", "Đến ngày" và nút "Truy vấn".
 class TransactionFilterBar extends StatelessWidget {
   const TransactionFilterBar({
     super.key,
@@ -47,7 +46,7 @@ class TransactionFilterBar extends StatelessWidget {
           ElevatedButton(
             onPressed: onQuery,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1ABC9C), // xanh ngọc nổi bật
+              backgroundColor: const Color(0xFF1ABC9C),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             ),
             child: const Text('Truy vấn'),

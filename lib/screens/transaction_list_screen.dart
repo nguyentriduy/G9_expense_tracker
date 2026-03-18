@@ -8,7 +8,6 @@ import '../widgets/transaction_filter_bar.dart';
 import '../widgets/transaction_list_section.dart';
 import 'add_transaction_screen.dart';
 
-/// Màn hình Tab "Giao dịch" hiển thị danh sách giao dịch đã group theo ngày.
 class TransactionListScreen extends StatefulWidget {
   const TransactionListScreen({super.key});
 
@@ -186,7 +185,7 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _openAddTransactionScreen,
-        backgroundColor: const Color(0xFF1ABC9C), // xanh ngọc
+        backgroundColor: const Color(0xFF1ABC9C),
         icon: const Icon(Icons.add),
         label: const Text('Thêm giao dịch'),
       ),
@@ -194,7 +193,6 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
   }
 }
 
-/// Thanh filter loại giao dịch: Tất cả / Thu / Chi.
 class _TypeFilterBar extends StatelessWidget {
   const _TypeFilterBar({required this.provider});
 

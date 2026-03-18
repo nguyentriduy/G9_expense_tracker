@@ -4,10 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/transaction_model.dart';
 
-/// Service lưu trữ giao dịch trên local bằng SharedPreferences.
-///
-/// Dùng cho bài toán demo: dữ liệu vẫn còn sau khi tắt app / hot restart,
-/// nhưng không cần cài đặt DB phức tạp.
 class TransactionLocalService {
   static const _storageKey = 'transactions_v1';
 
@@ -24,7 +20,6 @@ class TransactionLocalService {
           .map((e) => TransactionModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (_) {
-      // Nếu dữ liệu lỗi format thì trả về rỗng để tránh crash.
       return [];
     }
   }

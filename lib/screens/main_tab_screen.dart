@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'transaction_list_screen.dart';
 
-/// Màn hình chứa BottomNavigationBar 5 tab.
-/// Tạm thời các tab khác là placeholder, tab "Giao dịch" dùng TransactionListScreen.
 class MainTabScreen extends StatefulWidget {
   const MainTabScreen({super.key});
 
@@ -12,7 +10,7 @@ class MainTabScreen extends StatefulWidget {
 }
 
 class _MainTabScreenState extends State<MainTabScreen> {
-  int _currentIndex = 1; // 0: Tổng quan, 1: Giao dịch, ...
+  int _currentIndex = 1;
 
   final List<Widget> _pages = const [
     _PlaceholderScreen(title: 'Tổng quan'),
@@ -67,7 +65,6 @@ class _MainTabScreenState extends State<MainTabScreen> {
   }
 }
 
-/// Placeholder đơn giản cho các tab chưa phát triển.
 class _PlaceholderScreen extends StatelessWidget {
   const _PlaceholderScreen({required this.title});
 

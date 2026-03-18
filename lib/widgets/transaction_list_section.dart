@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/transaction_model.dart';
 import '../widgets/transaction_tile.dart';
 
-/// Một card đại diện cho 1 ngày, bên trong là danh sách transaction của ngày đó.
 class TransactionListSection extends StatelessWidget {
   const TransactionListSection({
     super.key,

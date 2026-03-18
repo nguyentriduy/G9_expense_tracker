@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Widget hiển thị khi chưa có giao dịch nào.
 class TransactionEmptyState extends StatelessWidget {
   const TransactionEmptyState({super.key});
 

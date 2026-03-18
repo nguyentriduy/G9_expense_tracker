@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import '../models/transaction_model.dart';
 
-/// Một dòng giao dịch giống sao kê ngân hàng.
 class TransactionTile extends StatelessWidget {
   const TransactionTile({
     super.key,
@@ -17,7 +16,6 @@ class TransactionTile extends StatelessWidget {
   String get _sign => transaction.isIncome ? '+' : '-';
 
   String _formatDateTime(DateTime date) {
-    // Định dạng dd/MM/yyyy HH:mm theo yêu cầu.
     return DateFormat('dd/MM/yyyy HH:mm').format(date);
   }
 
@@ -60,7 +58,6 @@ class TransactionTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  // Ví dụ: "TIỀN VÀO • 18/03/2026 14:06"
                   '${transaction.isIncome ? 'TIỀN VÀO' : 'TIỀN RA'} • ${_formatDateTime(transaction.date)}',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: Colors.grey,
