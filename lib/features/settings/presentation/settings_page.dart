@@ -107,16 +107,29 @@ class SettingsPage extends StatelessWidget {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
               onTap: () async {
-                await GoogleSignIn().signOut();
-                await FirebaseAuth.instance.signOut();
-                if (!context.mounted) {
-                  return;
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Đã đăng xuất thành công')),
-                );
-                if (onSignedOut != null) {
-                  await onSignedOut!(context);
+                try {
+                  try {
+                    await GoogleSignIn().signOut();
+                  } catch (_) {
+                    // Bỏ qua lỗi Google Sign In
+                  }
+                  await FirebaseAuth.instance.signOut();
+                  if (!context.mounted) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Đã đăng xuất thành công')),
+                  );
+                  if (onSignedOut != null) {
+                    await onSignedOut!(context);
+                  }
+                } catch (e) {
+                  if (!context.mounted) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Lỗi đăng xuất: $e')));
                 }
               },
             ),
