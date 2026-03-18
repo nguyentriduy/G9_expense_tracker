@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../shared/models/transaction_model.dart';
 import '../services/transaction_local_service.dart';
 import '../core/firebase/transaction_firebase_service.dart';
+import '../core/firebase/firebase_bootstrap.dart';
 
 enum TransactionKindFilter { all, income, expense }
 
@@ -11,7 +12,7 @@ class TransactionProvider extends ChangeNotifier {
     TransactionLocalService? localService,
     TransactionFirebaseService? remoteService,
   })  : _localService = localService ?? TransactionLocalService(),
-        _remoteService = !kIsWeb
+        _remoteService = !kIsWeb && isFirebaseInitialized
             ? (remoteService ?? TransactionFirebaseService())
             : null;
 
