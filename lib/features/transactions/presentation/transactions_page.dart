@@ -1,7 +1,5 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,21 +9,12 @@ class TransactionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prefs = AppPreferencesScope.of(context);
-    final locale = switch (prefs.languageCode) {
-      'en' => 'en_US',
-      'ja' => 'ja_JP',
-      _ => 'vi_VN',
-    };
     final currency = NumberFormat.currency(
-      locale: locale,
-      symbol: prefs.currencyCode,
+      locale: 'vi_VN',
+      symbol: 'VND',
       decimalDigits: 0,
     );
-    final datePattern = prefs.languageCode == 'en'
-        ? 'MM/dd/yyyy'
-        : 'dd/MM/yyyy';
-    final dateFormat = DateFormat(datePattern);
+    final dateFormat = DateFormat('dd/MM/yyyy');
     final dataService = FirestoreDataService();
 
     return StreamBuilder<List<TransactionItem>>(
@@ -37,7 +26,7 @@ class TransactionsPage extends StatelessWidget {
 
         final items = snapshot.data ?? const [];
         if (items.isEmpty) {
-          return Center(child: Text(context.t('no_transactions')));
+          return const Center(child: Text('Chưa có giao dịch nào'));
         }
 
         return ListView.separated(
@@ -69,20 +58,22 @@ class TransactionsPage extends StatelessWidget {
                   context: context,
                   builder: (dialogContext) {
                     return AlertDialog(
-                      title: Text(context.t('delete_transaction')),
-                      content: Text(context.t('delete_confirm')),
+                      title: const Text('Xóa giao dịch'),
+                      content: const Text(
+                        'Bạn có chắc muốn xóa giao dịch này không?',
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, false);
                           },
-                          child: Text(context.t('cancel')),
+                          child: const Text('Hủy'),
                         ),
                         FilledButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, true);
                           },
-                          child: Text(context.t('delete')),
+                          child: const Text('Xóa'),
                         ),
                       ],
                     );
@@ -97,7 +88,7 @@ class TransactionsPage extends StatelessWidget {
                   await dataService.deleteTransaction(item.id);
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(context.t('delete_success'))),
+                      const SnackBar(content: Text('Đã xóa giao dịch')),
                     );
                   }
                   return true;
@@ -111,7 +102,11 @@ class TransactionsPage extends StatelessWidget {
                 } catch (_) {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(context.t('delete_failed'))),
+                      const SnackBar(
+                        content: Text(
+                          'Xóa giao dịch thất bại, vui lòng thử lại',
+                        ),
+                      ),
                     );
                   }
                   return false;

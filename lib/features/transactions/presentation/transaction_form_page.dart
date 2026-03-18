@@ -1,5 +1,4 @@
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/shared/models/category_item.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +40,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
     if (parsedAmount == null || parsedAmount <= 0) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(context.t('invalid_amount'))));
+      ).showSnackBar(const SnackBar(content: Text('Số tiền không hợp lệ')));
       return;
     }
 
@@ -64,7 +63,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
       Navigator.pop(context);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(context.t('transaction_saved'))));
+      ).showSnackBar(const SnackBar(content: Text('Đã lưu giao dịch')));
     } on StateError catch (error) {
       if (!mounted) {
         return;
@@ -76,9 +75,11 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t('save_failed'))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Lưu giao dịch thất bại, vui lòng thử lại'),
+        ),
+      );
     } finally {
       if (mounted) {
         setState(() {
@@ -91,7 +92,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t('add_transaction'))),
+      appBar: AppBar(title: const Text('Thêm giao dịch')),
       body: StreamBuilder<List<CategoryItem>>(
         stream: _dataService.watchCategories(),
         builder: (context, snapshot) {
@@ -105,7 +106,11 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
               .toList(growable: false);
 
           if (categories.isEmpty) {
-            return Center(child: Text(context.t('no_matching_category')));
+            return const Center(
+              child: Text(
+                'Không có danh mục phù hợp. Vui lòng tạo danh mục trước.',
+              ),
+            );
           }
 
           if (_selectedCategoryId == null ||
@@ -125,20 +130,14 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          context.t('transaction_type'),
+                          'Loại giao dịch',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 10),
                         SegmentedButton<String>(
-                          segments: [
-                            ButtonSegment(
-                              value: 'expense',
-                              label: Text(context.t('expense_short')),
-                            ),
-                            ButtonSegment(
-                              value: 'income',
-                              label: Text(context.t('income_short')),
-                            ),
+                          segments: const [
+                            ButtonSegment(value: 'expense', label: Text('Chi')),
+                            ButtonSegment(value: 'income', label: Text('Thu')),
                           ],
                           selected: {_type},
                           onSelectionChanged: (values) {
@@ -163,20 +162,20 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                               _selectedCategoryId = value;
                             });
                           },
-                          decoration: InputDecoration(
-                            labelText: context.t('category'),
+                          decoration: const InputDecoration(
+                            labelText: 'Danh mục',
                           ),
                         ),
                         const SizedBox(height: 12),
                         TextFormField(
                           controller: _amountController,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            labelText: context.t('amount'),
+                          decoration: const InputDecoration(
+                            labelText: 'Số tiền',
                           ),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
-                              return context.t('enter_amount');
+                              return 'Vui lòng nhập số tiền';
                             }
                             return null;
                           },
@@ -184,8 +183,8 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                         const SizedBox(height: 12),
                         TextFormField(
                           controller: _noteController,
-                          decoration: InputDecoration(
-                            labelText: context.t('note'),
+                          decoration: const InputDecoration(
+                            labelText: 'Ghi chú',
                           ),
                         ),
                       ],
@@ -202,11 +201,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.check_circle_outline),
-                  label: Text(
-                    _isSubmitting
-                        ? context.t('saving')
-                        : context.t('save_transaction'),
-                  ),
+                  label: Text(_isSubmitting ? 'Đang lưu...' : 'Lưu giao dịch'),
                 ),
               ],
             ),

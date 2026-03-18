@@ -1,13 +1,17 @@
-import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key, required this.themeController});
+  const SettingsPage({
+    super.key,
+    required this.themeController,
+    this.onSignedOut,
+  });
 
   final AppThemeController themeController;
+  final Future<void> Function(BuildContext context)? onSignedOut;
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +115,9 @@ class SettingsPage extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Đã đăng xuất thành công')),
                 );
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  AppRoutes.login,
-                  (route) => false,
-                );
+                if (onSignedOut != null) {
+                  await onSignedOut!(context);
+                }
               },
             ),
           ],

@@ -1,6 +1,4 @@
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,16 +19,16 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(context.t('delete_transaction')),
-          content: Text(context.t('delete_confirm')),
+          title: const Text('Xóa giao dịch'),
+          content: const Text('Bạn có chắc muốn xóa giao dịch này không?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text(context.t('cancel')),
+              child: const Text('Hủy'),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: Text(context.t('delete')),
+              child: const Text('Xóa'),
             ),
           ],
         );
@@ -53,7 +51,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       Navigator.pop(context);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
+      ).showSnackBar(const SnackBar(content: Text('Đã xóa giao dịch')));
     } on StateError catch (error) {
       if (!mounted) {
         return;
@@ -65,9 +63,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_failed'))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Xóa giao dịch thất bại, vui lòng thử lại'),
+        ),
+      );
     } finally {
       if (mounted) {
         setState(() {
@@ -80,32 +80,23 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   @override
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as TransactionItem?;
-    final prefs = AppPreferencesScope.of(context);
-    final locale = switch (prefs.languageCode) {
-      'en' => 'en_US',
-      'ja' => 'ja_JP',
-      _ => 'vi_VN',
-    };
     final currency = NumberFormat.currency(
-      locale: locale,
-      symbol: prefs.currencyCode,
+      locale: 'vi_VN',
+      symbol: 'VND',
       decimalDigits: 0,
     );
-    final datePattern = prefs.languageCode == 'en'
-        ? 'MM/dd/yyyy HH:mm'
-        : 'dd/MM/yyyy HH:mm';
     final dateText = item == null
         ? ''
-        : DateFormat(datePattern).format(item.transactionDate);
+        : DateFormat('dd/MM/yyyy HH:mm').format(item.transactionDate);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t('transaction_detail')),
+        title: const Text('Chi tiết giao dịch'),
         actions: item == null
             ? null
             : [
                 IconButton(
-                  tooltip: context.t('delete_transaction'),
+                  tooltip: 'Xóa giao dịch',
                   onPressed: _isDeleting
                       ? null
                       : () => _deleteTransaction(item),
@@ -120,7 +111,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
               ],
       ),
       body: item == null
-          ? Center(child: Text(context.t('no_transaction_data')))
+          ? const Center(child: Text('Không có dữ liệu giao dịch'))
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
               children: [
@@ -131,7 +122,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          context.t('amount'),
+                          'Số tiền',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: 4),
@@ -149,28 +140,26 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                   child: Column(
                     children: [
                       ListTile(
-                        title: Text(context.t('type')),
+                        title: const Text('Loại'),
                         subtitle: Text(
-                          item.type == 'expense'
-                              ? context.t('expense')
-                              : context.t('income'),
+                          item.type == 'expense' ? 'Chi tiêu' : 'Thu nhập',
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
-                        title: Text(context.t('category')),
+                        title: const Text('Danh mục'),
                         subtitle: Text(item.category),
                       ),
                       const Divider(height: 1),
                       ListTile(
-                        title: Text(context.t('note')),
+                        title: const Text('Ghi chú'),
                         subtitle: Text(
-                          item.note.isEmpty ? context.t('no_note') : item.note,
+                          item.note.isEmpty ? 'Không có ghi chú' : item.note,
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
-                        title: Text(context.t('transaction_date')),
+                        title: const Text('Ngày giao dịch'),
                         subtitle: Text(dateText),
                       ),
                     ],

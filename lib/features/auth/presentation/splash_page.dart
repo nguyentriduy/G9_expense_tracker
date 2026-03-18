@@ -1,5 +1,4 @@
 import 'package:expense_tracker_app/app/app_router.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -65,14 +64,14 @@ class _SplashPageState extends State<SplashPage> {
               ),
               const SizedBox(height: 18),
               Text(
-                context.t('app_title'),
+                'Expense Tracker',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                context.t('app_tagline'),
+                'Quản lý thu chi chuyên nghiệp cho cá nhân',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],

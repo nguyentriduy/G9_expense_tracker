@@ -1,4 +1,3 @@
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class TransactionFilterPage extends StatefulWidget {
@@ -15,7 +14,7 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t('search_filter'))),
+      appBar: AppBar(title: const Text('Tìm kiếm và lọc')),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
         children: [
@@ -26,24 +25,15 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.t('transaction_type'),
+                    'Loại giao dịch',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 10),
                   SegmentedButton<String>(
-                    segments: [
-                      ButtonSegment(
-                        value: 'all',
-                        label: Text(context.t('all')),
-                      ),
-                      ButtonSegment(
-                        value: 'expense',
-                        label: Text(context.t('expense_short')),
-                      ),
-                      ButtonSegment(
-                        value: 'income',
-                        label: Text(context.t('income_short')),
-                      ),
+                    segments: const [
+                      ButtonSegment(value: 'all', label: Text('Tất cả')),
+                      ButtonSegment(value: 'expense', label: Text('Chi')),
+                      ButtonSegment(value: 'income', label: Text('Thu')),
                     ],
                     selected: {_type},
                     onSelectionChanged: (value) {
@@ -55,32 +45,24 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
                     initialValue: _category,
-                    items: [
+                    items: const [
                       DropdownMenuItem(
                         value: 'all',
-                        child: Text(context.t('all_categories')),
+                        child: Text('Tất cả danh mục'),
                       ),
                       DropdownMenuItem(
-                        value: 'food',
-                        child: Text(context.t('food')),
+                        value: 'Ăn uống',
+                        child: Text('Ăn uống'),
                       ),
-                      DropdownMenuItem(
-                        value: 'transport',
-                        child: Text(context.t('transport')),
-                      ),
-                      DropdownMenuItem(
-                        value: 'other',
-                        child: Text(context.t('other')),
-                      ),
+                      DropdownMenuItem(value: 'Đi lại', child: Text('Đi lại')),
+                      DropdownMenuItem(value: 'Lương', child: Text('Lương')),
                     ],
                     onChanged: (value) {
                       setState(() {
                         _category = value ?? 'all';
                       });
                     },
-                    decoration: InputDecoration(
-                      labelText: context.t('category'),
-                    ),
+                    decoration: const InputDecoration(labelText: 'Danh mục'),
                   ),
                 ],
               ),
@@ -91,7 +73,7 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
             width: double.infinity,
             child: FilledButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(context.t('apply_filter')),
+              child: const Text('Áp dụng bộ lọc'),
             ),
           ),
         ],

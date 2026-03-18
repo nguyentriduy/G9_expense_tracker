@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
 import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +15,23 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _selectedIndex = 0;
 
-  static const _titles = [
-    'Tổng quan tài chính',
-    'Giao dịch',
-    'Danh mục',
-    'Thống kê',
-    'Tài khoản cá nhân',
-  ];
+  static const _titles = ['', '', '', '', 'Tài khoản'];
 
   List<Widget> get _pages => [
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    SettingsPage(themeController: widget.themeController),
+    const SizedBox.shrink(),
+    const SizedBox.shrink(),
+    const SizedBox.shrink(),
+    const SizedBox.shrink(),
+    SettingsPage(
+      themeController: widget.themeController,
+      onSignedOut: (context) async {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutes.login,
+          (route) => false,
+        );
+      },
+    ),
   ];
 
   @override
@@ -71,14 +75,5 @@ class _HomeShellState extends State<HomeShell> {
         ],
       ),
     );
-  }
-}
-
-class _MinimalTabPage extends StatelessWidget {
-  const _MinimalTabPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.expand();
   }
 }
