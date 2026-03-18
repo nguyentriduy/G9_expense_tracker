@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/transaction_model.dart';
+import '../shared/models/transaction_model.dart';
 import '../widgets/transaction_tile.dart';
 
 class TransactionListSection extends StatelessWidget {

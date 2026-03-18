@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../models/transaction_model.dart';
-import '../providers/transaction_provider.dart';
-import '../widgets/thousand_separator_input_formatter.dart';
+import '../../../shared/models/transaction_model.dart';
+import '../../../providers/transaction_provider.dart';
+import '../../../widgets/thousand_separator_input_formatter.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key, this.initialTransaction});

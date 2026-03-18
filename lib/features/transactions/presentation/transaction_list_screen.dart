@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/transaction_model.dart';
-import '../providers/transaction_provider.dart';
-import '../widgets/transaction_empty_state.dart';
-import '../widgets/transaction_filter_bar.dart';
-import '../widgets/transaction_list_section.dart';
+import '../../../shared/models/transaction_model.dart';
+import '../../../providers/transaction_provider.dart';
+import '../../../widgets/transaction_empty_state.dart';
+import '../../../widgets/transaction_filter_bar.dart';
+import '../../../widgets/transaction_list_section.dart';
 import 'add_transaction_screen.dart';
 
 class TransactionListScreen extends StatefulWidget {

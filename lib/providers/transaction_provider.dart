@@ -1,15 +1,22 @@
 import 'package:flutter/foundation.dart';
 
-import '../models/transaction_model.dart';
+import '../shared/models/transaction_model.dart';
 import '../services/transaction_local_service.dart';
+import '../core/firebase/transaction_firebase_service.dart';
 
 enum TransactionKindFilter { all, income, expense }
 
 class TransactionProvider extends ChangeNotifier {
-  TransactionProvider({TransactionLocalService? localService})
-      : _localService = localService ?? TransactionLocalService();
+  TransactionProvider({
+    TransactionLocalService? localService,
+    TransactionFirebaseService? remoteService,
+  })  : _localService = localService ?? TransactionLocalService(),
+        _remoteService = !kIsWeb
+            ? (remoteService ?? TransactionFirebaseService())
+            : null;
 
   final TransactionLocalService _localService;
+  final TransactionFirebaseService? _remoteService;
   final List<TransactionModel> _items = [];
 
   DateTime? _fromDate;
@@ -36,11 +43,25 @@ class TransactionProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final loaded = await _localService.loadTransactions();
-      _items
-        ..clear()
-        ..addAll(loaded);
+      if (!kIsWeb && _remoteService != null) {
+        final loadedRemote = await _remoteService!.loadTransactions();
+        _items
+          ..clear()
+          ..addAll(loadedRemote);
+        await _localService.saveTransactions(_items);
+      } else {
+        final loadedLocal = await _localService.loadTransactions();
+        _items
+          ..clear()
+          ..addAll(loadedLocal);
+      }
     } catch (e) {
+      try {
+        final loadedLocal = await _localService.loadTransactions();
+        _items
+          ..clear()
+          ..addAll(loadedLocal);
+      } catch (_) {}
       _errorMessage = 'Có lỗi khi tải dữ liệu. Vui lòng thử lại.';
     } finally {
       _isLoading = false;
@@ -115,6 +136,9 @@ class TransactionProvider extends ChangeNotifier {
     _items.add(tx);
     notifyListeners();
     await _localService.saveTransactions(_items);
+    if (!kIsWeb && _remoteService != null) {
+      await _remoteService!.addOrUpdateTransaction(tx);
+    }
   }
 
   Future<void> updateTransaction(TransactionModel updated) async {
@@ -123,11 +147,17 @@ class TransactionProvider extends ChangeNotifier {
     _items[index] = updated;
     notifyListeners();
     await _localService.saveTransactions(_items);
+    if (!kIsWeb && _remoteService != null) {
+      await _remoteService!.addOrUpdateTransaction(updated);
+    }
   }
 
   Future<void> deleteTransaction(String id) async {
     _items.removeWhere((tx) => tx.id == id);
     notifyListeners();
     await _localService.saveTransactions(_items);
+    if (!kIsWeb && _remoteService != null) {
+      await _remoteService!.deleteTransaction(id);
+    }
   }
 }

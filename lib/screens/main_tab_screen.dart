@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'transaction_list_screen.dart';
+import '../features/transactions/presentation/transaction_list_screen.dart';
 
 class MainTabScreen extends StatefulWidget {
   const MainTabScreen({super.key});

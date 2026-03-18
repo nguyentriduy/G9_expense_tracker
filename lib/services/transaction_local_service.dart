@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/transaction_model.dart';
+import '../shared/models/transaction_model.dart';
 
 class TransactionLocalService {
   static const _storageKey = 'transactions_v1';
