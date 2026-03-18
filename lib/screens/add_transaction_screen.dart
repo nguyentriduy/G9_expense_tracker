@@ -6,11 +6,14 @@ import '../models/transaction_model.dart';
 import '../providers/transaction_provider.dart';
 import '../widgets/thousand_separator_input_formatter.dart';
 
-/// Màn hình thêm mới giao dịch.
+/// Màn hình thêm/sửa giao dịch.
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen({super.key});
+  const AddTransactionScreen({super.key, this.initialTransaction});
 
   static const routeName = '/add-transaction';
+
+  /// Nếu truyền vào thì màn hình ở chế độ "Sửa giao dịch".
+  final TransactionModel? initialTransaction;
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
@@ -24,14 +27,14 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
-  final List<String> _expenseCategories = const [
+  final List<String> _expenseCategories = [
     'Ăn uống',
     'Mua sắm',
     'Đi lại',
     'Giải trí',
   ];
 
-  final List<String> _incomeCategories = const [
+  final List<String> _incomeCategories = [
     'Lương',
     'Thưởng',
     'Khác',
@@ -43,7 +46,25 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedCategory = _currentCategories.first;
+    final tx = widget.initialTransaction;
+
+    if (tx != null) {
+      // Chế độ sửa: fill sẵn dữ liệu.
+      _isIncome = tx.isIncome;
+
+      final currentCategories = _currentCategories;
+      if (!currentCategories.contains(tx.categoryName)) {
+        currentCategories.insert(0, tx.categoryName);
+      }
+      _selectedCategory = tx.categoryName;
+
+      final formatter = NumberFormat.decimalPattern('vi_VN');
+      _amountController.text = formatter.format(tx.amount);
+      _noteController.text = tx.note ?? '';
+    } else {
+      // Chế độ thêm mới.
+      _selectedCategory = _currentCategories.first;
+    }
   }
 
   @override
@@ -72,19 +93,28 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       return;
     }
 
+    final isEditing = widget.initialTransaction != null;
+    final base = widget.initialTransaction;
+
     final tx = TransactionModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      id: isEditing
+          ? base!.id
+          : DateTime.now().millisecondsSinceEpoch.toString(),
       amount: amount,
       isIncome: _isIncome,
       categoryName: _selectedCategory ?? '',
       note: _noteController.text.trim().isEmpty
           ? null
           : _noteController.text.trim(),
-      date: DateTime.now(),
+      date: isEditing ? base!.date : DateTime.now(),
     );
 
-    // Lưu vào provider để cập nhật UI ngay.
-    context.read<TransactionProvider>().addTransaction(tx);
+    final provider = context.read<TransactionProvider>();
+    if (isEditing) {
+      await provider.updateTransaction(tx);
+    } else {
+      await provider.addTransaction(tx);
+    }
 
     // Đóng màn hình, trả về transaction nếu caller muốn dùng.
     Navigator.of(context).pop(tx);
@@ -96,7 +126,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Thêm giao dịch'),
+        title: Text(
+          widget.initialTransaction == null
+              ? 'Thêm giao dịch'
+              : 'Sửa giao dịch',
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

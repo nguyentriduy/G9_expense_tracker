@@ -20,6 +20,30 @@ class TransactionModel {
 
   /// Trả về ngày (không có giờ) để phục vụ group theo ngày.
   DateTime get dateOnly => DateTime(date.year, date.month, date.day);
+
+  /// Chuyển model sang JSON để lưu local (SharedPreferences / API).
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'amount': amount,
+      'isIncome': isIncome,
+      'categoryName': categoryName,
+      'note': note,
+      'date': date.toIso8601String(),
+    };
+  }
+
+  /// Tạo model từ JSON.
+  factory TransactionModel.fromJson(Map<String, dynamic> json) {
+    return TransactionModel(
+      id: json['id'] as String,
+      amount: json['amount'] as int,
+      isIncome: json['isIncome'] as bool,
+      categoryName: json['categoryName'] as String,
+      note: json['note'] as String?,
+      date: DateTime.parse(json['date'] as String),
+    );
+  }
 }
 
 /// Cấu trúc dữ liệu sau khi đã group theo ngày để render UI.

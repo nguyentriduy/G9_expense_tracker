@@ -12,14 +12,13 @@ class TransactionTile extends StatelessWidget {
 
   final TransactionModel transaction;
 
-  String get _typeLabel => transaction.isIncome ? 'TIỀN VÀO' : 'TIỀN RA';
-
   Color get _amountColor => transaction.isIncome ? Colors.greenAccent : Colors.redAccent;
 
   String get _sign => transaction.isIncome ? '+' : '-';
 
-  String _formatTime(DateTime date) {
-    return DateFormat('HH:mm').format(date);
+  String _formatDateTime(DateTime date) {
+    // Định dạng dd/MM/yyyy HH:mm theo yêu cầu.
+    return DateFormat('dd/MM/yyyy HH:mm').format(date);
   }
 
   String _formatAmount(int amount) {
@@ -52,16 +51,20 @@ class TransactionTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _typeLabel,
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.grey,
+                  transaction.categoryName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
                       ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  transaction.note?.isNotEmpty == true
-                      ? transaction.note!
-                      : _formatTime(transaction.date),
+                  // Ví dụ: "TIỀN VÀO • 18/03/2026 14:06"
+                  '${transaction.isIncome ? 'TIỀN VÀO' : 'TIỀN RA'} • ${_formatDateTime(transaction.date)}',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: Colors.grey,
+                      ),
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/transaction_model.dart';
 import '../providers/transaction_provider.dart';
 import '../widgets/transaction_empty_state.dart';
 import '../widgets/transaction_filter_bar.dart';
@@ -18,6 +19,19 @@ class TransactionListScreen extends StatefulWidget {
 class _TransactionListScreenState extends State<TransactionListScreen> {
   DateTime? _tempFromDate;
   DateTime? _tempToDate;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   Future<void> _pickFromDate() async {
     final now = DateTime.now();
@@ -53,30 +67,68 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
   }
 
   Future<void> _openAddTransactionScreen() async {
-    final result = await Navigator.of(context).pushNamed(
-      AddTransactionScreen.routeName,
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const AddTransactionScreen(),
+      ),
     );
+  }
 
-    if (result != null && result is! bool) {
-      // Màn hình Add trả về TransactionModel, provider sẽ xử lý trong add từ đó.
-      // Ở đây ta chỉ cần gọi notify thông qua provider nếu cần thiết.
-    }
+  void _onSearchChanged() {
+    context
+        .read<TransactionProvider>()
+        .setSearchKeyword(_searchController.text.trim());
+  }
+
+  Future<void> _editTransaction(TransactionModel tx) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => AddTransactionScreen(initialTransaction: tx),
+      ),
+    );
+  }
+
+  Future<void> _deleteTransaction(TransactionModel tx) async {
+    await context.read<TransactionProvider>().deleteTransaction(tx.id);
   }
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<TransactionProvider>();
     final groups = provider.groupedByDate;
+    Widget body;
 
-    final body = groups.isEmpty
-        ? const TransactionEmptyState()
-        : ListView.builder(
-            padding: const EdgeInsets.only(bottom: 96),
-            itemCount: groups.length,
-            itemBuilder: (context, index) {
-              return TransactionListSection(group: groups[index]);
-            },
+    if (provider.isLoading) {
+      body = const Center(child: CircularProgressIndicator());
+    } else if (provider.errorMessage != null) {
+      body = Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(provider.errorMessage!),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => provider.loadFromLocal(),
+              child: const Text('Thử lại'),
+            ),
+          ],
+        ),
+      );
+    } else if (groups.isEmpty) {
+      body = const TransactionEmptyState();
+    } else {
+      body = ListView.builder(
+        padding: const EdgeInsets.only(bottom: 96),
+        itemCount: groups.length,
+        itemBuilder: (context, index) {
+          return TransactionListSection(
+            group: groups[index],
+            onTapTransaction: _editTransaction,
+            onDeleteTransaction: _deleteTransaction,
           );
+        },
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -90,6 +142,32 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Tìm kiếm giao dịch...',
+                    prefixIcon: const Icon(Icons.search),
+                    filled: true,
+                    fillColor: const Color(0xFF0F1822),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                      horizontal: 16,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _TypeFilterBar(provider: provider),
+              ],
+            ),
+          ),
           TransactionFilterBar(
             fromDate: provider.fromDate,
             toDate: provider.toDate,
@@ -107,6 +185,38 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
         icon: const Icon(Icons.add),
         label: const Text('Thêm giao dịch'),
       ),
+    );
+  }
+}
+
+/// Thanh filter loại giao dịch: Tất cả / Thu / Chi.
+class _TypeFilterBar extends StatelessWidget {
+  const _TypeFilterBar({required this.provider});
+
+  final TransactionProvider provider;
+
+  @override
+  Widget build(BuildContext context) {
+    final current = provider.kindFilter;
+
+    Widget buildChip(String label, TransactionKindFilter value) {
+      final selected = current == value;
+      return ChoiceChip(
+        label: Text(label),
+        selected: selected,
+        onSelected: (_) => provider.setKindFilter(value),
+      );
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        buildChip('Tất cả', TransactionKindFilter.all),
+        const SizedBox(width: 8),
+        buildChip('Chỉ Thu', TransactionKindFilter.income),
+        const SizedBox(width: 8),
+        buildChip('Chỉ Chi', TransactionKindFilter.expense),
+      ],
     );
   }
 }

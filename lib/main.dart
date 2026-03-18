@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TransactionProvider()),
+        ChangeNotifierProvider(
+          create: (_) => TransactionProvider()..loadFromLocal(),
+        ),
       ],
       child: MaterialApp(
         title: 'G9 Expense Tracker',

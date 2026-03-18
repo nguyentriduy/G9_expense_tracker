@@ -6,10 +6,21 @@ class TransactionEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Chưa có giao dịch nào',
-        style: TextStyle(fontSize: 16),
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Icon(
+            Icons.account_balance_wallet_outlined,
+            size: 80,
+            color: Colors.white24,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Bạn chưa có giao dịch nào...',
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
       ),
     );
   }
