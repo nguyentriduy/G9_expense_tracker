@@ -66,6 +66,15 @@ class TransactionTile extends StatelessWidget {
                         color: Colors.grey,
                       ),
                 ),
+                if (transaction.note != null && transaction.note!.isNotEmpty)
+                  const SizedBox(height: 2),
+                if (transaction.note != null && transaction.note!.isNotEmpty)
+                  Text(
+                    transaction.note!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
               ],
             ),
           ),

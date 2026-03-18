@@ -37,12 +37,14 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
     final now = DateTime.now();
     final picked = await showDatePicker(
       context: context,
-      initialDate: _tempFromDate ?? now,
+      initialDate: _tempFromDate ?? context.read<TransactionProvider>().fromDate ?? now,
       firstDate: DateTime(now.year - 5),
       lastDate: DateTime(now.year + 5),
     );
     if (picked != null) {
-      setState(() => _tempFromDate = picked);
+      setState(() {
+        _tempFromDate = picked;
+      });
     }
   }
 
@@ -50,20 +52,23 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
     final now = DateTime.now();
     final picked = await showDatePicker(
       context: context,
-      initialDate: _tempToDate ?? now,
+      initialDate: _tempToDate ?? context.read<TransactionProvider>().toDate ?? now,
       firstDate: DateTime(now.year - 5),
       lastDate: DateTime(now.year + 5),
     );
     if (picked != null) {
-      setState(() => _tempToDate = picked);
+      setState(() {
+        _tempToDate = picked;
+      });
     }
   }
 
   void _applyQuery() {
-    context.read<TransactionProvider>().setFilter(
-          from: _tempFromDate,
-          to: _tempToDate,
-        );
+    final provider = context.read<TransactionProvider>();
+    provider.setFilter(
+      from: _tempFromDate,
+      to: _tempToDate,
+    );
   }
 
   Future<void> _openAddTransactionScreen() async {
@@ -169,8 +174,8 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
             ),
           ),
           TransactionFilterBar(
-            fromDate: provider.fromDate,
-            toDate: provider.toDate,
+            fromDate: _tempFromDate ?? provider.fromDate,
+            toDate: _tempToDate ?? provider.toDate,
             onSelectFromDate: _pickFromDate,
             onSelectToDate: _pickToDate,
             onQuery: _applyQuery,

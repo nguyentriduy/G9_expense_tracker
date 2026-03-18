@@ -55,7 +55,8 @@ class TransactionProvider extends ChangeNotifier {
   /// Chỉ filter theo khoảng ngày.
   List<TransactionModel> get _filteredByDate {
     return _items.where((tx) {
-      final date = tx.date;
+      // So sánh theo ngày (bỏ phần giờ) để filter trực quan hơn.
+      final date = tx.dateOnly;
       if (_fromDate != null && date.isBefore(_fromDate!)) {
         return false;
       }
