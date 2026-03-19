@@ -84,11 +84,15 @@ class FirestoreDataService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
     return ref
         .where('categoryId', isEqualTo: categoryId)
         .orderBy('transactionDate', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map(TransactionItem.fromDoc).toList());
+<<<<<<< HEAD
 =======
     return ref.where('categoryId', isEqualTo: categoryId).snapshots().map((
       snapshot,
@@ -98,6 +102,8 @@ class FirestoreDataService {
       return items;
     });
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
   }
 
   Stream<DashboardSummary> watchDashboardSummary() {

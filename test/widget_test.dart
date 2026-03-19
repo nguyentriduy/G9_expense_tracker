@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+<<<<<<< HEAD
 void main() {
   testWidgets('Material smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -33,5 +34,14 @@ void main() {
 
     expect(find.text('Đăng nhập'), findsAtLeastNWidgets(1));
 >>>>>>> origin/feature/categories
+=======
+void main() {
+  testWidgets('Material smoke test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(home: Scaffold(body: Text('Expense Tracker'))),
+    );
+
+    expect(find.text('Expense Tracker'), findsOneWidget);
+>>>>>>> origin/feature/dashboard
   });
 }

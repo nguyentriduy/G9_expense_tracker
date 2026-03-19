@@ -1,9 +1,13 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 =======
 >>>>>>> origin/feature/categories
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+>>>>>>> origin/feature/dashboard
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -62,14 +66,20 @@ class _RegisterPageState extends State<RegisterPage> {
       }
       ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
         SnackBar(
           content: Text(
             context.t('register_failed', {'error': error.message ?? 'unknown'}),
           ),
         ),
+<<<<<<< HEAD
 =======
         SnackBar(content: Text('Đăng ký thất bại: ${error.message}')),
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
       );
     } finally {
       if (mounted) {
@@ -84,10 +94,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
 <<<<<<< HEAD
+<<<<<<< HEAD
       appBar: AppBar(title: Text(context.t('create_account'))),
 =======
       appBar: AppBar(title: const Text('Tạo tài khoản')),
 >>>>>>> origin/feature/categories
+=======
+      appBar: AppBar(title: Text(context.t('create_account'))),
+>>>>>>> origin/feature/dashboard
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -97,19 +111,27 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 Text(
 <<<<<<< HEAD
+<<<<<<< HEAD
                   context.t('start_finance_journey'),
 =======
                   'Bắt đầu hành trình tài chính',
 >>>>>>> origin/feature/categories
+=======
+                  context.t('start_finance_journey'),
+>>>>>>> origin/feature/dashboard
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 6),
                 Text(
 <<<<<<< HEAD
+<<<<<<< HEAD
                   context.t('register_sync_desc'),
 =======
                   'Tạo tài khoản để đồng bộ dữ liệu thu chi trên Firebase.',
 >>>>>>> origin/feature/categories
+=======
+                  context.t('register_sync_desc'),
+>>>>>>> origin/feature/dashboard
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
@@ -123,6 +145,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: _nameController,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
                             decoration: InputDecoration(
                               labelText: context.t('full_name'),
                               prefixIcon: const Icon(Icons.person_outline),
@@ -130,6 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             validator: (value) {
                               if ((value?.trim().isEmpty ?? true)) {
                                 return context.t('enter_full_name');
+<<<<<<< HEAD
 =======
                             decoration: const InputDecoration(
                               labelText: 'Họ tên',
@@ -139,6 +165,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               if ((value?.trim().isEmpty ?? true)) {
                                 return 'Vui lòng nhập họ tên';
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
                               }
                               return null;
                             },
@@ -148,6 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
 <<<<<<< HEAD
+<<<<<<< HEAD
                             decoration: InputDecoration(
                               labelText: context.t('email'),
                               prefixIcon: const Icon(Icons.alternate_email),
@@ -156,15 +185,24 @@ class _RegisterPageState extends State<RegisterPage> {
                               labelText: 'Email',
                               prefixIcon: Icon(Icons.alternate_email),
 >>>>>>> origin/feature/categories
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('email'),
+                              prefixIcon: const Icon(Icons.alternate_email),
+>>>>>>> origin/feature/dashboard
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 return context.t('enter_valid_email');
 =======
                                 return 'Vui lòng nhập email hợp lệ';
 >>>>>>> origin/feature/categories
+=======
+                                return context.t('enter_valid_email');
+>>>>>>> origin/feature/dashboard
                               }
                               return null;
                             },
@@ -174,6 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: _passwordController,
                             obscureText: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
                             decoration: InputDecoration(
                               labelText: context.t('password'),
                               prefixIcon: const Icon(Icons.lock_outline),
@@ -182,15 +221,24 @@ class _RegisterPageState extends State<RegisterPage> {
                               labelText: 'Mật khẩu',
                               prefixIcon: Icon(Icons.lock_outline),
 >>>>>>> origin/feature/categories
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('password'),
+                              prefixIcon: const Icon(Icons.lock_outline),
+>>>>>>> origin/feature/dashboard
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.length < 6) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 return context.t('min_password_6');
 =======
                                 return 'Mật khẩu tối thiểu 6 ký tự';
 >>>>>>> origin/feature/categories
+=======
+                                return context.t('min_password_6');
+>>>>>>> origin/feature/dashboard
                               }
                               return null;
                             },
@@ -211,10 +259,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                       ),
                                     )
 <<<<<<< HEAD
+<<<<<<< HEAD
                                   : Text(context.t('create_account')),
 =======
                                   : const Text('Tạo tài khoản'),
 >>>>>>> origin/feature/categories
+=======
+                                  : Text(context.t('create_account')),
+>>>>>>> origin/feature/dashboard
                             ),
                           ),
                         ],

@@ -1,10 +1,15 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 =======
 >>>>>>> origin/feature/categories
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
+>>>>>>> origin/feature/dashboard
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +20,9 @@ class TransactionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
     final prefs = AppPreferencesScope.of(context);
     final locale = switch (prefs.languageCode) {
       'en' => 'en_US',
@@ -30,6 +38,7 @@ class TransactionsPage extends StatelessWidget {
         ? 'MM/dd/yyyy'
         : 'dd/MM/yyyy';
     final dateFormat = DateFormat(datePattern);
+<<<<<<< HEAD
 =======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
@@ -38,6 +47,8 @@ class TransactionsPage extends StatelessWidget {
     );
     final dateFormat = DateFormat('dd/MM/yyyy');
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
     final dataService = FirestoreDataService();
 
     return StreamBuilder<List<TransactionItem>>(
@@ -50,10 +61,14 @@ class TransactionsPage extends StatelessWidget {
         final items = snapshot.data ?? const [];
         if (items.isEmpty) {
 <<<<<<< HEAD
+<<<<<<< HEAD
           return Center(child: Text(context.t('no_transactions')));
 =======
           return const Center(child: Text('Chưa có giao dịch nào'));
 >>>>>>> origin/feature/categories
+=======
+          return Center(child: Text(context.t('no_transactions')));
+>>>>>>> origin/feature/dashboard
         }
 
         return ListView.separated(
@@ -86,6 +101,7 @@ class TransactionsPage extends StatelessWidget {
                   builder: (dialogContext) {
                     return AlertDialog(
 <<<<<<< HEAD
+<<<<<<< HEAD
                       title: Text(context.t('delete_transaction')),
                       content: Text(context.t('delete_confirm')),
 =======
@@ -94,26 +110,38 @@ class TransactionsPage extends StatelessWidget {
                         'Bạn có chắc muốn xóa giao dịch này không?',
                       ),
 >>>>>>> origin/feature/categories
+=======
+                      title: Text(context.t('delete_transaction')),
+                      content: Text(context.t('delete_confirm')),
+>>>>>>> origin/feature/dashboard
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, false);
                           },
 <<<<<<< HEAD
+<<<<<<< HEAD
                           child: Text(context.t('cancel')),
 =======
                           child: const Text('Hủy'),
 >>>>>>> origin/feature/categories
+=======
+                          child: Text(context.t('cancel')),
+>>>>>>> origin/feature/dashboard
                         ),
                         FilledButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, true);
                           },
 <<<<<<< HEAD
+<<<<<<< HEAD
                           child: Text(context.t('delete')),
 =======
                           child: const Text('Xóa'),
 >>>>>>> origin/feature/categories
+=======
+                          child: Text(context.t('delete')),
+>>>>>>> origin/feature/dashboard
                         ),
                       ],
                     );
@@ -129,10 +157,14 @@ class TransactionsPage extends StatelessWidget {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
+<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_success'))),
 =======
                       const SnackBar(content: Text('Đã xóa giao dịch')),
 >>>>>>> origin/feature/categories
+=======
+                      SnackBar(content: Text(context.t('delete_success'))),
+>>>>>>> origin/feature/dashboard
                     );
                   }
                   return true;
@@ -147,6 +179,7 @@ class TransactionsPage extends StatelessWidget {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
+<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_failed'))),
 =======
                       const SnackBar(
@@ -155,6 +188,9 @@ class TransactionsPage extends StatelessWidget {
                         ),
                       ),
 >>>>>>> origin/feature/categories
+=======
+                      SnackBar(content: Text(context.t('delete_failed'))),
+>>>>>>> origin/feature/dashboard
                     );
                   }
                   return false;

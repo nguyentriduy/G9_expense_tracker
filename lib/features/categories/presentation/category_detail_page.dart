@@ -52,6 +52,7 @@ class CategoryDetailPage extends StatelessWidget {
                   stream: dataService.watchTransactionsByCategory(category.id),
                   builder: (context, snapshot) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Padding(
@@ -78,6 +79,8 @@ class CategoryDetailPage extends StatelessWidget {
                     }
 
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
                     final transactions = snapshot.data ?? const [];
                     final totalAmount = transactions.fold<double>(
                       0,

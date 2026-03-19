@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 =======
 >>>>>>> origin/feature/categories
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+>>>>>>> origin/feature/dashboard
 import 'package:flutter/material.dart';
 
 class TransactionFilterPage extends StatefulWidget {
@@ -19,10 +23,14 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
 <<<<<<< HEAD
+<<<<<<< HEAD
       appBar: AppBar(title: Text(context.t('search_filter'))),
 =======
       appBar: AppBar(title: const Text('Tìm kiếm và lọc')),
 >>>>>>> origin/feature/categories
+=======
+      appBar: AppBar(title: Text(context.t('search_filter'))),
+>>>>>>> origin/feature/dashboard
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
         children: [
@@ -34,15 +42,22 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                 children: [
                   Text(
 <<<<<<< HEAD
+<<<<<<< HEAD
                     context.t('transaction_type'),
 =======
                     'Loại giao dịch',
 >>>>>>> origin/feature/categories
+=======
+                    context.t('transaction_type'),
+>>>>>>> origin/feature/dashboard
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 10),
                   SegmentedButton<String>(
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
                     segments: [
                       ButtonSegment(
                         value: 'all',
@@ -56,12 +71,15 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                         value: 'income',
                         label: Text(context.t('income_short')),
                       ),
+<<<<<<< HEAD
 =======
                     segments: const [
                       ButtonSegment(value: 'all', label: Text('Tất cả')),
                       ButtonSegment(value: 'expense', label: Text('Chi')),
                       ButtonSegment(value: 'income', label: Text('Thu')),
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
                     ],
                     selected: {_type},
                     onSelectionChanged: (value) {
@@ -74,6 +92,9 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                   DropdownButtonFormField<String>(
                     initialValue: _category,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feature/dashboard
                     items: [
                       DropdownMenuItem(
                         value: 'all',
@@ -91,6 +112,7 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                         value: 'other',
                         child: Text(context.t('other')),
                       ),
+<<<<<<< HEAD
 =======
                     items: const [
                       DropdownMenuItem(
@@ -104,6 +126,8 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                       DropdownMenuItem(value: 'Đi lại', child: Text('Đi lại')),
                       DropdownMenuItem(value: 'Lương', child: Text('Lương')),
 >>>>>>> origin/feature/categories
+=======
+>>>>>>> origin/feature/dashboard
                     ],
                     onChanged: (value) {
                       setState(() {
@@ -111,12 +135,18 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
                       });
                     },
 <<<<<<< HEAD
+<<<<<<< HEAD
                     decoration: InputDecoration(
                       labelText: context.t('category'),
                     ),
 =======
                     decoration: const InputDecoration(labelText: 'Danh mục'),
 >>>>>>> origin/feature/categories
+=======
+                    decoration: InputDecoration(
+                      labelText: context.t('category'),
+                    ),
+>>>>>>> origin/feature/dashboard
                   ),
                 ],
               ),
@@ -128,10 +158,14 @@ class _TransactionFilterPageState extends State<TransactionFilterPage> {
             child: FilledButton(
               onPressed: () => Navigator.pop(context),
 <<<<<<< HEAD
+<<<<<<< HEAD
               child: Text(context.t('apply_filter')),
 =======
               child: const Text('Áp dụng bộ lọc'),
 >>>>>>> origin/feature/categories
+=======
+              child: Text(context.t('apply_filter')),
+>>>>>>> origin/feature/dashboard
             ),
           ),
         ],
