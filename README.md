@@ -1,4 +1,4 @@
-# g9_expense_tracker
+# expense_tracker_app
 
 A new Flutter project.
 

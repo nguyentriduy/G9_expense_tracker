@@ -1,0 +1,166 @@
+import 'package:expense_tracker_app/app/app_router.dart';
+import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
+import 'package:expense_tracker_app/shared/models/transaction_item.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class TransactionsPage extends StatelessWidget {
+  const TransactionsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final prefs = AppPreferencesScope.of(context);
+    final locale = switch (prefs.languageCode) {
+      'en' => 'en_US',
+      'ja' => 'ja_JP',
+      _ => 'vi_VN',
+    };
+    final currency = NumberFormat.currency(
+      locale: locale,
+      symbol: prefs.currencyCode,
+      decimalDigits: 0,
+    );
+    final datePattern = prefs.languageCode == 'en'
+        ? 'MM/dd/yyyy'
+        : 'dd/MM/yyyy';
+    final dateFormat = DateFormat(datePattern);
+    final dataService = FirestoreDataService();
+
+    return StreamBuilder<List<TransactionItem>>(
+      stream: dataService.watchTransactions(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final items = snapshot.data ?? const [];
+        if (items.isEmpty) {
+          return Center(child: Text(context.t('no_transactions')));
+        }
+
+        return ListView.separated(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
+          itemBuilder: (context, index) {
+            final item = items[index];
+            final isExpense = item.type == 'expense';
+            final amountColor = isExpense
+                ? Theme.of(context).colorScheme.error
+                : Theme.of(context).colorScheme.primary;
+
+            return Dismissible(
+              key: ValueKey(item.id),
+              direction: DismissDirection.endToStart,
+              background: Container(
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.errorContainer,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Icon(
+                  Icons.delete_outline,
+                  color: Theme.of(context).colorScheme.error,
+                ),
+              ),
+              confirmDismiss: (direction) async {
+                final confirmed = await showDialog<bool>(
+                  context: context,
+                  builder: (dialogContext) {
+                    return AlertDialog(
+                      title: Text(context.t('delete_transaction')),
+                      content: Text(context.t('delete_confirm')),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(dialogContext, false);
+                          },
+                          child: Text(context.t('cancel')),
+                        ),
+                        FilledButton(
+                          onPressed: () {
+                            Navigator.pop(dialogContext, true);
+                          },
+                          child: Text(context.t('delete')),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+                if (confirmed != true) {
+                  return false;
+                }
+
+                try {
+                  await dataService.deleteTransaction(item.id);
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.t('delete_success'))),
+                    );
+                  }
+                  return true;
+                } on StateError catch (error) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(error.message)));
+                  }
+                  return false;
+                } catch (_) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.t('delete_failed'))),
+                    );
+                  }
+                  return false;
+                }
+              },
+              child: Card(
+                child: ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 6,
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: amountColor.withValues(alpha: 0.14),
+                    child: Icon(
+                      isExpense
+                          ? Icons.south_west_rounded
+                          : Icons.north_east_rounded,
+                      color: amountColor,
+                    ),
+                  ),
+                  title: Text(
+                    item.category,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(
+                    '${item.note} • ${dateFormat.format(item.transactionDate)}',
+                  ),
+                  trailing: Text(
+                    '${isExpense ? '-' : '+'}${currency.format(item.amount)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: amountColor,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.transactionDetail,
+                      arguments: item,
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+          separatorBuilder: (_, index) => const SizedBox(height: 10),
+          itemCount: items.length,
+        );
+      },
+    );
+  }
+}
