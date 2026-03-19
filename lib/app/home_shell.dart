@@ -5,9 +5,7 @@ import 'package:expense_tracker_app/features/dashboard/presentation/dashboard_pa
 import 'package:expense_tracker_app/features/reports/presentation/reports_page.dart';
 import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
 import 'package:expense_tracker_app/features/transactions/presentation/transaction_list_screen.dart';
-import 'package:expense_tracker_app/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeShell extends StatefulWidget {
 	const HomeShell({super.key, required this.themeController});
@@ -31,7 +29,7 @@ class _HomeShellState extends State<HomeShell> {
 
 	List<Widget> get _pages => [
 				const DashboardPage(),
-				const _TransactionsTab(),
+				const TransactionListScreen(),
 				const CategoriesPage(),
 				const ReportsPage(),
 				SettingsPage(
@@ -94,15 +92,4 @@ class _HomeShellState extends State<HomeShell> {
 	}
 }
 
-class _TransactionsTab extends StatelessWidget {
-	const _TransactionsTab();
-
-	@override
-	Widget build(BuildContext context) {
-		return ChangeNotifierProvider(
-			create: (_) => TransactionProvider()..loadFromLocal(),
-			child: const TransactionListScreen(),
-		);
-	}
-}
 

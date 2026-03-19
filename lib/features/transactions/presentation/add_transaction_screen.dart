@@ -117,7 +117,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final teal = const Color(0xFF1ABC9C);
+		final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -135,7 +135,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0F1822),
+						color: colorScheme.surfaceVariant,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Form(
@@ -235,7 +235,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 child: ElevatedButton(
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: teal,
+							backgroundColor: colorScheme.primary,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   child: const Text('Lưu giao dịch'),

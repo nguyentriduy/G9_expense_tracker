@@ -11,7 +11,10 @@ class TransactionTile extends StatelessWidget {
 
   final TransactionModel transaction;
 
-  Color get _amountColor => transaction.isIncome ? Colors.greenAccent : Colors.redAccent;
+  Color _amountColor(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return transaction.isIncome ? colorScheme.primary : colorScheme.error;
+  }
 
   String get _sign => transaction.isIncome ? '+' : '-';
 
@@ -34,12 +37,12 @@ class TransactionTile extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFF1ABC9C).withOpacity(0.15),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
               transaction.isIncome ? Icons.arrow_downward : Icons.arrow_upward,
-              color: const Color(0xFF1ABC9C),
+              color: Theme.of(context).colorScheme.primary,
               size: 22,
             ),
           ),
@@ -79,7 +82,7 @@ class TransactionTile extends StatelessWidget {
           Text(
             '$_sign${_formatAmount(transaction.amount)}',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: _amountColor,
+                  color: _amountColor(context),
                   fontWeight: FontWeight.w600,
                 ),
           ),

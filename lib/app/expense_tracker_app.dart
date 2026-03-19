@@ -10,7 +10,9 @@ import 'package:expense_tracker_app/features/categories/presentation/category_de
 import 'package:expense_tracker_app/features/transactions/presentation/transaction_detail_page.dart';
 import 'package:expense_tracker_app/features/transactions/presentation/transaction_filter_page.dart';
 import 'package:expense_tracker_app/features/transactions/presentation/transaction_form_page.dart';
+import 'package:expense_tracker_app/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseTrackerApp extends StatefulWidget {
   const ExpenseTrackerApp({super.key});
@@ -39,14 +41,16 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
     return AnimatedBuilder(
       animation: _themeController,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Expense Tracker',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.light(),
-          darkTheme: AppTheme.dark(),
-          themeMode: _themeController.themeMode,
-          initialRoute: AppRoutes.splash,
-          onGenerateRoute: (settings) {
+        return ChangeNotifierProvider(
+          create: (_) => TransactionProvider()..loadFromLocal(),
+          child: MaterialApp(
+            title: 'Expense Tracker',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light(),
+            darkTheme: AppTheme.dark(),
+            themeMode: _themeController.themeMode,
+            initialRoute: AppRoutes.splash,
+            onGenerateRoute: (settings) {
             switch (settings.name) {
               case AppRoutes.splash:
                 return MaterialPageRoute<void>(
@@ -96,7 +100,8 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
             }
 
             return null;
-          },
+            },
+          ),
         );
       },
     );

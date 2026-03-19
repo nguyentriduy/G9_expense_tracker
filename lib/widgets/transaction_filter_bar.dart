@@ -23,6 +23,7 @@ class TransactionFilterBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
@@ -46,7 +47,7 @@ class TransactionFilterBar extends StatelessWidget {
           ElevatedButton(
             onPressed: onQuery,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1ABC9C),
+              backgroundColor: colorScheme.primary,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             ),
             child: const Text('Truy vấn'),
@@ -70,6 +71,7 @@ class _DateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
@@ -77,7 +79,7 @@ class _DateField extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.tealAccent.withOpacity(0.5)),
+          border: Border.all(color: colorScheme.outlineVariant),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

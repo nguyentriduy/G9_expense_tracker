@@ -134,6 +134,8 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
       );
     }
 
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Giao dịch'),
@@ -156,7 +158,7 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
                     hintText: 'Tìm kiếm giao dịch...',
                     prefixIcon: const Icon(Icons.search),
                     filled: true,
-                    fillColor: const Color(0xFF0F1822),
+                    fillColor: colorScheme.surfaceVariant,
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 0,
                       horizontal: 16,
@@ -185,7 +187,7 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _openAddTransactionScreen,
-        backgroundColor: const Color(0xFF1ABC9C),
+        backgroundColor: colorScheme.primary,
         icon: const Icon(Icons.add),
         label: const Text('Thêm giao dịch'),
       ),
