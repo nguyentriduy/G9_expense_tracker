@@ -51,6 +51,33 @@ class CategoryDetailPage extends StatelessWidget {
                 StreamBuilder<List<TransactionItem>>(
                   stream: dataService.watchTransactionsByCategory(category.id),
                   builder: (context, snapshot) {
+<<<<<<< HEAD
+=======
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 24),
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+
+                    if (snapshot.hasError) {
+                      return Card(
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.error_outline,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          title: const Text(
+                            'Không tải được giao dịch danh mục',
+                          ),
+                          subtitle: const Text(
+                            'Vui lòng thử lại sau hoặc kiểm tra cấu hình dữ liệu.',
+                          ),
+                        ),
+                      );
+                    }
+
+>>>>>>> origin/feature/categories
                     final transactions = snapshot.data ?? const [];
                     final totalAmount = transactions.fold<double>(
                       0,

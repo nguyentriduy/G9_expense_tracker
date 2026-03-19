@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
 import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
+=======
+import 'package:expense_tracker_app/app/app_router.dart';
+import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
+import 'package:expense_tracker_app/features/categories/presentation/categories_page.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/dashboard_page.dart';
+import 'package:expense_tracker_app/features/reports/presentation/reports_page.dart';
+import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
+import 'package:expense_tracker_app/features/transactions/presentation/transactions_page.dart';
+>>>>>>> origin/feature/categories
 import 'package:flutter/material.dart';
 
 class HomeShell extends StatefulWidget {
@@ -23,18 +33,55 @@ class _HomeShellState extends State<HomeShell> {
   ];
 
   List<Widget> get _pages => [
+<<<<<<< HEAD
     const _MinimalTabPage(),
     const _MinimalTabPage(),
     const _MinimalTabPage(),
     const _MinimalTabPage(),
+=======
+    const DashboardPage(),
+    const TransactionsPage(),
+    const CategoriesPage(),
+    const ReportsPage(),
+>>>>>>> origin/feature/categories
     SettingsPage(themeController: widget.themeController),
   ];
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
       appBar: AppBar(title: Text(_titles[_selectedIndex])),
       body: _pages[_selectedIndex],
+=======
+    final isTransactionTab = _selectedIndex == 1;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_selectedIndex]),
+        actions: isTransactionTab
+            ? [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.transactionFilter);
+                  },
+                  icon: const Icon(Icons.filter_alt_outlined),
+                  tooltip: 'Bộ lọc',
+                ),
+              ]
+            : null,
+      ),
+      body: _pages[_selectedIndex],
+      floatingActionButton: isTransactionTab
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.transactionForm);
+              },
+              icon: const Icon(Icons.add),
+              label: const Text('Thêm giao dịch'),
+            )
+          : null,
+>>>>>>> origin/feature/categories
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {
@@ -73,6 +120,7 @@ class _HomeShellState extends State<HomeShell> {
     );
   }
 }
+<<<<<<< HEAD
 
 class _MinimalTabPage extends StatelessWidget {
   const _MinimalTabPage();
@@ -82,3 +130,5 @@ class _MinimalTabPage extends StatelessWidget {
     return const SizedBox.expand();
   }
 }
+=======
+>>>>>>> origin/feature/categories
