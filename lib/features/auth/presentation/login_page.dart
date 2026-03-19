@@ -2,12 +2,16 @@ import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 =======
 >>>>>>> origin/feature/categories
 =======
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -65,19 +69,25 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
         SnackBar(
           content: Text(
             context.t('login_failed', {'error': error.message ?? 'unknown'}),
           ),
         ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         SnackBar(content: Text('Đăng nhập thất bại: ${error.message}')),
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
       );
     } finally {
       if (mounted) {
@@ -137,8 +147,11 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
         SnackBar(
           content: Text(
             context.t('google_login_failed', {
@@ -147,11 +160,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         SnackBar(content: Text('Đăng nhập Google thất bại: ${error.message}')),
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
       );
     } catch (error) {
       if (!context.mounted) {
@@ -160,19 +176,25 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
         SnackBar(
           content: Text(
             context.t('google_login_failed', {'error': error.toString()}),
           ),
         ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         SnackBar(content: Text('Đăng nhập Google thất bại: $error')),
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
       );
     } finally {
       if (mounted) {
@@ -228,6 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                               context.t('welcome_back'),
 =======
                               'Chào mừng trở lại',
@@ -235,6 +258,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                               context.t('welcome_back'),
 >>>>>>> origin/feature/dashboard
+=======
+                              context.t('welcome_back'),
+>>>>>>> parent of 8a88830 (merge categories)
                               style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(
                                     color: Colors.white,
@@ -242,6 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                             ),
                             const SizedBox(height: 4),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             Text(
@@ -254,6 +281,10 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               context.t('login_to_continue'),
 >>>>>>> origin/feature/dashboard
+=======
+                            Text(
+                              context.t('login_to_continue'),
+>>>>>>> parent of 8a88830 (merge categories)
                               style: TextStyle(color: Colors.white70),
                             ),
                           ],
@@ -274,6 +305,7 @@ class _LoginPageState extends State<LoginPage> {
                           Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             context.t('login'),
 =======
                             'Đăng nhập',
@@ -281,12 +313,16 @@ class _LoginPageState extends State<LoginPage> {
 =======
                             context.t('login'),
 >>>>>>> origin/feature/dashboard
+=======
+                            context.t('login'),
+>>>>>>> parent of 8a88830 (merge categories)
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 12),
                           TextFormField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             decoration: InputDecoration(
@@ -302,10 +338,16 @@ class _LoginPageState extends State<LoginPage> {
                               labelText: context.t('email'),
                               prefixIcon: const Icon(Icons.alternate_email),
 >>>>>>> origin/feature/dashboard
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('email'),
+                              prefixIcon: const Icon(Icons.alternate_email),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 return context.t('enter_valid_email');
@@ -315,6 +357,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                                 return context.t('enter_valid_email');
 >>>>>>> origin/feature/dashboard
+=======
+                                return context.t('enter_valid_email');
+>>>>>>> parent of 8a88830 (merge categories)
                               }
                               return null;
                             },
@@ -323,6 +368,7 @@ class _LoginPageState extends State<LoginPage> {
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             decoration: InputDecoration(
@@ -338,10 +384,16 @@ class _LoginPageState extends State<LoginPage> {
                               labelText: context.t('password'),
                               prefixIcon: const Icon(Icons.lock_outline),
 >>>>>>> origin/feature/dashboard
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('password'),
+                              prefixIcon: const Icon(Icons.lock_outline),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.length < 6) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 return context.t('min_password_6');
@@ -351,6 +403,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                                 return context.t('min_password_6');
 >>>>>>> origin/feature/dashboard
+=======
+                                return context.t('min_password_6');
+>>>>>>> parent of 8a88830 (merge categories)
                               }
                               return null;
                             },
@@ -372,6 +427,7 @@ class _LoginPageState extends State<LoginPage> {
                                     )
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                   : Text(context.t('login')),
 =======
                                   : const Text('Đăng nhập'),
@@ -379,6 +435,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                                   : Text(context.t('login')),
 >>>>>>> origin/feature/dashboard
+=======
+                                  : Text(context.t('login')),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -394,6 +453,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                               label: Text(context.t('login_with_google')),
 =======
                               label: const Text('Đăng nhập với Google'),
@@ -401,6 +461,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                               label: Text(context.t('login_with_google')),
 >>>>>>> origin/feature/dashboard
+=======
+                              label: Text(context.t('login_with_google')),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                           ),
                           Align(
@@ -414,6 +477,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                               child: Text(context.t('forgot_password')),
 =======
                               child: const Text('Quên mật khẩu?'),
@@ -421,6 +485,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                               child: Text(context.t('forgot_password')),
 >>>>>>> origin/feature/dashboard
+=======
+                              child: Text(context.t('forgot_password')),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                           ),
                         ],
@@ -435,6 +502,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Text(context.t('no_account')),
 =======
                     const Text('Chưa có tài khoản? '),
@@ -442,10 +510,14 @@ class _LoginPageState extends State<LoginPage> {
 =======
                     Text(context.t('no_account')),
 >>>>>>> origin/feature/dashboard
+=======
+                    Text(context.t('no_account')),
+>>>>>>> parent of 8a88830 (merge categories)
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.register);
                       },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                       child: Text(context.t('register_now')),
@@ -455,6 +527,9 @@ class _LoginPageState extends State<LoginPage> {
 =======
                       child: Text(context.t('register_now')),
 >>>>>>> origin/feature/dashboard
+=======
+                      child: Text(context.t('register_now')),
+>>>>>>> parent of 8a88830 (merge categories)
                     ),
                   ],
                 ),

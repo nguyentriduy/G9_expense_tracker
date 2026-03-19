@@ -1,6 +1,7 @@
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 =======
@@ -9,6 +10,10 @@ import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -31,8 +36,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
         return AlertDialog(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
           title: Text(context.t('delete_transaction')),
           content: Text(context.t('delete_confirm')),
           actions: [
@@ -43,6 +51,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
               child: Text(context.t('delete')),
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
           title: const Text('Xóa giao dịch'),
@@ -58,6 +67,8 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
             ),
           ],
         );
@@ -82,6 +93,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
         context,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
 =======
       ).showSnackBar(const SnackBar(content: Text('Đã xóa giao dịch')));
@@ -89,6 +101,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
       ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
 >>>>>>> origin/feature/dashboard
+=======
+      ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
+>>>>>>> parent of 8a88830 (merge categories)
     } on StateError catch (error) {
       if (!mounted) {
         return;
@@ -100,6 +115,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       if (!mounted) {
         return;
       }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       ScaffoldMessenger.of(
@@ -117,6 +133,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
         context,
       ).showSnackBar(SnackBar(content: Text(context.t('delete_failed'))));
 >>>>>>> origin/feature/dashboard
+=======
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.t('delete_failed'))));
+>>>>>>> parent of 8a88830 (merge categories)
     } finally {
       if (mounted) {
         setState(() {
@@ -131,8 +152,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
     final item = ModalRoute.of(context)?.settings.arguments as TransactionItem?;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
     final prefs = AppPreferencesScope.of(context);
     final locale = switch (prefs.languageCode) {
       'en' => 'en_US',
@@ -155,6 +179,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       appBar: AppBar(
         title: Text(context.t('transaction_detail')),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
@@ -171,10 +196,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
         actions: item == null
             ? null
             : [
                 IconButton(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                   tooltip: context.t('delete_transaction'),
@@ -184,6 +212,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
                   tooltip: context.t('delete_transaction'),
 >>>>>>> origin/feature/dashboard
+=======
+                  tooltip: context.t('delete_transaction'),
+>>>>>>> parent of 8a88830 (merge categories)
                   onPressed: _isDeleting
                       ? null
                       : () => _deleteTransaction(item),
@@ -200,6 +231,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       body: item == null
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           ? Center(child: Text(context.t('no_transaction_data')))
 =======
           ? const Center(child: Text('Không có dữ liệu giao dịch'))
@@ -207,6 +239,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
           ? Center(child: Text(context.t('no_transaction_data')))
 >>>>>>> origin/feature/dashboard
+=======
+          ? Center(child: Text(context.t('no_transaction_data')))
+>>>>>>> parent of 8a88830 (merge categories)
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
               children: [
@@ -219,6 +254,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                           context.t('amount'),
 =======
                           'Số tiền',
@@ -226,6 +262,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
                           context.t('amount'),
 >>>>>>> origin/feature/dashboard
+=======
+                          context.t('amount'),
+>>>>>>> parent of 8a88830 (merge categories)
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: 4),
@@ -245,13 +284,17 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       ListTile(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                         title: Text(context.t('type')),
                         subtitle: Text(
                           item.type == 'expense'
                               ? context.t('expense')
                               : context.t('income'),
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                         title: const Text('Loại'),
@@ -260,10 +303,13 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                         title: Text(context.t('category')),
@@ -273,10 +319,14 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
                         title: Text(context.t('category')),
 >>>>>>> origin/feature/dashboard
+=======
+                        title: Text(context.t('category')),
+>>>>>>> parent of 8a88830 (merge categories)
                         subtitle: Text(item.category),
                       ),
                       const Divider(height: 1),
                       ListTile(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                         title: Text(context.t('note')),
@@ -292,10 +342,16 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         subtitle: Text(
                           item.note.isEmpty ? context.t('no_note') : item.note,
 >>>>>>> origin/feature/dashboard
+=======
+                        title: Text(context.t('note')),
+                        subtitle: Text(
+                          item.note.isEmpty ? context.t('no_note') : item.note,
+>>>>>>> parent of 8a88830 (merge categories)
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                         title: Text(context.t('transaction_date')),
@@ -305,6 +361,9 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
 =======
                         title: Text(context.t('transaction_date')),
 >>>>>>> origin/feature/dashboard
+=======
+                        title: Text(context.t('transaction_date')),
+>>>>>>> parent of 8a88830 (merge categories)
                         subtitle: Text(dateText),
                       ),
                     ],

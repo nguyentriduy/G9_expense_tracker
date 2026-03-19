@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 =======
@@ -10,6 +11,10 @@ import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,8 +26,11 @@ class TransactionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
     final prefs = AppPreferencesScope.of(context);
     final locale = switch (prefs.languageCode) {
       'en' => 'en_US',
@@ -39,6 +47,7 @@ class TransactionsPage extends StatelessWidget {
         : 'dd/MM/yyyy';
     final dateFormat = DateFormat(datePattern);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
@@ -49,6 +58,8 @@ class TransactionsPage extends StatelessWidget {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
     final dataService = FirestoreDataService();
 
     return StreamBuilder<List<TransactionItem>>(
@@ -62,6 +73,7 @@ class TransactionsPage extends StatelessWidget {
         if (items.isEmpty) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           return Center(child: Text(context.t('no_transactions')));
 =======
           return const Center(child: Text('Chưa có giao dịch nào'));
@@ -69,6 +81,9 @@ class TransactionsPage extends StatelessWidget {
 =======
           return Center(child: Text(context.t('no_transactions')));
 >>>>>>> origin/feature/dashboard
+=======
+          return Center(child: Text(context.t('no_transactions')));
+>>>>>>> parent of 8a88830 (merge categories)
         }
 
         return ListView.separated(
@@ -102,6 +117,7 @@ class TransactionsPage extends StatelessWidget {
                     return AlertDialog(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                       title: Text(context.t('delete_transaction')),
                       content: Text(context.t('delete_confirm')),
 =======
@@ -114,11 +130,16 @@ class TransactionsPage extends StatelessWidget {
                       title: Text(context.t('delete_transaction')),
                       content: Text(context.t('delete_confirm')),
 >>>>>>> origin/feature/dashboard
+=======
+                      title: Text(context.t('delete_transaction')),
+                      content: Text(context.t('delete_confirm')),
+>>>>>>> parent of 8a88830 (merge categories)
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, false);
                           },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                           child: Text(context.t('cancel')),
@@ -128,11 +149,15 @@ class TransactionsPage extends StatelessWidget {
 =======
                           child: Text(context.t('cancel')),
 >>>>>>> origin/feature/dashboard
+=======
+                          child: Text(context.t('cancel')),
+>>>>>>> parent of 8a88830 (merge categories)
                         ),
                         FilledButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, true);
                           },
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                           child: Text(context.t('delete')),
@@ -142,6 +167,9 @@ class TransactionsPage extends StatelessWidget {
 =======
                           child: Text(context.t('delete')),
 >>>>>>> origin/feature/dashboard
+=======
+                          child: Text(context.t('delete')),
+>>>>>>> parent of 8a88830 (merge categories)
                         ),
                       ],
                     );
@@ -158,6 +186,7 @@ class TransactionsPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_success'))),
 =======
                       const SnackBar(content: Text('Đã xóa giao dịch')),
@@ -165,6 +194,9 @@ class TransactionsPage extends StatelessWidget {
 =======
                       SnackBar(content: Text(context.t('delete_success'))),
 >>>>>>> origin/feature/dashboard
+=======
+                      SnackBar(content: Text(context.t('delete_success'))),
+>>>>>>> parent of 8a88830 (merge categories)
                     );
                   }
                   return true;
@@ -180,6 +212,7 @@ class TransactionsPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_failed'))),
 =======
                       const SnackBar(
@@ -191,6 +224,9 @@ class TransactionsPage extends StatelessWidget {
 =======
                       SnackBar(content: Text(context.t('delete_failed'))),
 >>>>>>> origin/feature/dashboard
+=======
+                      SnackBar(content: Text(context.t('delete_failed'))),
+>>>>>>> parent of 8a88830 (merge categories)
                     );
                   }
                   return false;

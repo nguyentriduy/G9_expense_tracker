@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 =======
@@ -10,6 +11,10 @@ import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:expense_tracker_app/shared/models/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,8 +27,11 @@ class CategoriesPage extends StatelessWidget {
     final dataService = FirestoreDataService();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
     final prefs = AppPreferencesScope.of(context);
     final locale = switch (prefs.languageCode) {
       'en' => 'en_US',
@@ -40,6 +48,7 @@ class CategoriesPage extends StatelessWidget {
         : 'dd/MM/yyyy';
     final dateFormat = DateFormat(datePattern);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
@@ -50,6 +59,8 @@ class CategoriesPage extends StatelessWidget {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
 
     return StreamBuilder<List<CategoryItem>>(
       stream: dataService.watchCategories(),
@@ -62,6 +73,7 @@ class CategoriesPage extends StatelessWidget {
         if (categories.isEmpty) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           return Center(child: Text(context.t('no_categories')));
 =======
           return const Center(child: Text('Chưa có danh mục nào'));
@@ -69,6 +81,9 @@ class CategoriesPage extends StatelessWidget {
 =======
           return Center(child: Text(context.t('no_categories')));
 >>>>>>> origin/feature/dashboard
+=======
+          return Center(child: Text(context.t('no_categories')));
+>>>>>>> parent of 8a88830 (merge categories)
         }
 
         return StreamBuilder<Map<String, CategoryTransactionStats>>(
@@ -82,6 +97,7 @@ class CategoriesPage extends StatelessWidget {
                 Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   context.t('income_expense_categories'),
 =======
                   'Danh mục thu chi',
@@ -89,6 +105,9 @@ class CategoriesPage extends StatelessWidget {
 =======
                   context.t('income_expense_categories'),
 >>>>>>> origin/feature/dashboard
+=======
+                  context.t('income_expense_categories'),
+>>>>>>> parent of 8a88830 (merge categories)
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 10),
@@ -101,13 +120,17 @@ class CategoriesPage extends StatelessWidget {
                   final subtitleText = stats == null
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                       ? '${category.type == 'expense' ? context.t('expense') : context.t('income')} • ${context.t('no_activity')}'
                       : '${category.type == 'expense' ? context.t('expense') : context.t('income')} • ${context.t('transactions_count', {'count': stats.count.toString()})}';
 
                   final trailingInfo = stats == null
                       ? '0 ${prefs.currencyCode}'
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                       ? '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • Chưa có giao dịch'
@@ -118,6 +141,8 @@ class CategoriesPage extends StatelessWidget {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                       : currency.format(stats.totalAmount);
                   final lastDate = stats?.lastTransactionDate;
 
@@ -141,6 +166,7 @@ class CategoriesPage extends StatelessWidget {
                               Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 context.t('latest', {
                                   'date': dateFormat.format(lastDate),
                                 }),
@@ -152,6 +178,11 @@ class CategoriesPage extends StatelessWidget {
                                   'date': dateFormat.format(lastDate),
                                 }),
 >>>>>>> origin/feature/dashboard
+=======
+                                context.t('latest', {
+                                  'date': dateFormat.format(lastDate),
+                                }),
+>>>>>>> parent of 8a88830 (merge categories)
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                           ],

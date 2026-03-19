@@ -65,6 +65,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     iosClientId:
         '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
 =======
@@ -74,6 +75,10 @@ class DefaultFirebaseOptions {
     iosClientId:
         '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
 >>>>>>> origin/feature/dashboard
+=======
+    iosClientId:
+        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
+>>>>>>> parent of 8a88830 (merge categories)
     iosBundleId: 'com.example.expenseTrackerApp',
   );
 
@@ -85,6 +90,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     iosClientId:
         '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
 =======
@@ -94,6 +100,10 @@ class DefaultFirebaseOptions {
     iosClientId:
         '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
 >>>>>>> origin/feature/dashboard
+=======
+    iosClientId:
+        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
+>>>>>>> parent of 8a88830 (merge categories)
     iosBundleId: 'com.example.expenseTrackerApp',
   );
 
@@ -107,6 +117,7 @@ class DefaultFirebaseOptions {
   );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 
@@ -115,3 +126,6 @@ class DefaultFirebaseOptions {
 =======
 }
 >>>>>>> origin/feature/dashboard
+=======
+}
+>>>>>>> parent of 8a88830 (merge categories)

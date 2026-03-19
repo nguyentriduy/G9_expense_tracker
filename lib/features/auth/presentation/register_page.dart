@@ -2,12 +2,16 @@ import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 =======
 >>>>>>> origin/feature/categories
 =======
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -67,19 +71,25 @@ class _RegisterPageState extends State<RegisterPage> {
       ScaffoldMessenger.of(context).showSnackBar(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
         SnackBar(
           content: Text(
             context.t('register_failed', {'error': error.message ?? 'unknown'}),
           ),
         ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         SnackBar(content: Text('Đăng ký thất bại: ${error.message}')),
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
       );
     } finally {
       if (mounted) {
@@ -95,6 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       appBar: AppBar(title: Text(context.t('create_account'))),
 =======
       appBar: AppBar(title: const Text('Tạo tài khoản')),
@@ -102,6 +113,9 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
       appBar: AppBar(title: Text(context.t('create_account'))),
 >>>>>>> origin/feature/dashboard
+=======
+      appBar: AppBar(title: Text(context.t('create_account'))),
+>>>>>>> parent of 8a88830 (merge categories)
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -112,6 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   context.t('start_finance_journey'),
 =======
                   'Bắt đầu hành trình tài chính',
@@ -119,10 +134,14 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
                   context.t('start_finance_journey'),
 >>>>>>> origin/feature/dashboard
+=======
+                  context.t('start_finance_journey'),
+>>>>>>> parent of 8a88830 (merge categories)
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 6),
                 Text(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                   context.t('register_sync_desc'),
@@ -132,6 +151,9 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
                   context.t('register_sync_desc'),
 >>>>>>> origin/feature/dashboard
+=======
+                  context.t('register_sync_desc'),
+>>>>>>> parent of 8a88830 (merge categories)
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
@@ -146,8 +168,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: _nameController,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                             decoration: InputDecoration(
                               labelText: context.t('full_name'),
                               prefixIcon: const Icon(Icons.person_outline),
@@ -155,6 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             validator: (value) {
                               if ((value?.trim().isEmpty ?? true)) {
                                 return context.t('enter_full_name');
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                             decoration: const InputDecoration(
@@ -167,6 +193,8 @@ class _RegisterPageState extends State<RegisterPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                               }
                               return null;
                             },
@@ -175,6 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             decoration: InputDecoration(
@@ -190,10 +219,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               labelText: context.t('email'),
                               prefixIcon: const Icon(Icons.alternate_email),
 >>>>>>> origin/feature/dashboard
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('email'),
+                              prefixIcon: const Icon(Icons.alternate_email),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 return context.t('enter_valid_email');
@@ -203,6 +238,9 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
                                 return context.t('enter_valid_email');
 >>>>>>> origin/feature/dashboard
+=======
+                                return context.t('enter_valid_email');
+>>>>>>> parent of 8a88830 (merge categories)
                               }
                               return null;
                             },
@@ -211,6 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             decoration: InputDecoration(
@@ -226,10 +265,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               labelText: context.t('password'),
                               prefixIcon: const Icon(Icons.lock_outline),
 >>>>>>> origin/feature/dashboard
+=======
+                            decoration: InputDecoration(
+                              labelText: context.t('password'),
+                              prefixIcon: const Icon(Icons.lock_outline),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.length < 6) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 return context.t('min_password_6');
@@ -239,6 +284,9 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
                                 return context.t('min_password_6');
 >>>>>>> origin/feature/dashboard
+=======
+                                return context.t('min_password_6');
+>>>>>>> parent of 8a88830 (merge categories)
                               }
                               return null;
                             },
@@ -260,6 +308,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     )
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                   : Text(context.t('create_account')),
 =======
                                   : const Text('Tạo tài khoản'),
@@ -267,6 +316,9 @@ class _RegisterPageState extends State<RegisterPage> {
 =======
                                   : Text(context.t('create_account')),
 >>>>>>> origin/feature/dashboard
+=======
+                                  : Text(context.t('create_account')),
+>>>>>>> parent of 8a88830 (merge categories)
                             ),
                           ),
                         ],

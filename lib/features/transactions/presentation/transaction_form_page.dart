@@ -1,12 +1,16 @@
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 =======
 >>>>>>> origin/feature/categories
 =======
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 >>>>>>> origin/feature/dashboard
+=======
+import 'package:expense_tracker_app/core/localization/app_localization.dart';
+>>>>>>> parent of 8a88830 (merge categories)
 import 'package:expense_tracker_app/shared/models/category_item.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +54,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
         context,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       ).showSnackBar(SnackBar(content: Text(context.t('invalid_amount'))));
 =======
       ).showSnackBar(const SnackBar(content: Text('Số tiền không hợp lệ')));
@@ -57,6 +62,9 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 =======
       ).showSnackBar(SnackBar(content: Text(context.t('invalid_amount'))));
 >>>>>>> origin/feature/dashboard
+=======
+      ).showSnackBar(SnackBar(content: Text(context.t('invalid_amount'))));
+>>>>>>> parent of 8a88830 (merge categories)
       return;
     }
 
@@ -81,6 +89,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
         context,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       ).showSnackBar(SnackBar(content: Text(context.t('transaction_saved'))));
 =======
       ).showSnackBar(const SnackBar(content: Text('Đã lưu giao dịch')));
@@ -88,6 +97,9 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 =======
       ).showSnackBar(SnackBar(content: Text(context.t('transaction_saved'))));
 >>>>>>> origin/feature/dashboard
+=======
+      ).showSnackBar(SnackBar(content: Text(context.t('transaction_saved'))));
+>>>>>>> parent of 8a88830 (merge categories)
     } on StateError catch (error) {
       if (!mounted) {
         return;
@@ -99,6 +111,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
       if (!mounted) {
         return;
       }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       ScaffoldMessenger.of(
@@ -116,6 +129,11 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
         context,
       ).showSnackBar(SnackBar(content: Text(context.t('save_failed'))));
 >>>>>>> origin/feature/dashboard
+=======
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.t('save_failed'))));
+>>>>>>> parent of 8a88830 (merge categories)
     } finally {
       if (mounted) {
         setState(() {
@@ -130,6 +148,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
     return Scaffold(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       appBar: AppBar(title: Text(context.t('add_transaction'))),
 =======
       appBar: AppBar(title: const Text('Thêm giao dịch')),
@@ -137,6 +156,9 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 =======
       appBar: AppBar(title: Text(context.t('add_transaction'))),
 >>>>>>> origin/feature/dashboard
+=======
+      appBar: AppBar(title: Text(context.t('add_transaction'))),
+>>>>>>> parent of 8a88830 (merge categories)
       body: StreamBuilder<List<CategoryItem>>(
         stream: _dataService.watchCategories(),
         builder: (context, snapshot) {
@@ -152,6 +174,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
           if (categories.isEmpty) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return Center(child: Text(context.t('no_matching_category')));
 =======
             return const Center(
@@ -163,6 +186,9 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 =======
             return Center(child: Text(context.t('no_matching_category')));
 >>>>>>> origin/feature/dashboard
+=======
+            return Center(child: Text(context.t('no_matching_category')));
+>>>>>>> parent of 8a88830 (merge categories)
           }
 
           if (_selectedCategoryId == null ||
@@ -184,6 +210,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                         Text(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                           context.t('transaction_type'),
 =======
                           'Loại giao dịch',
@@ -191,14 +218,20 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 =======
                           context.t('transaction_type'),
 >>>>>>> origin/feature/dashboard
+=======
+                          context.t('transaction_type'),
+>>>>>>> parent of 8a88830 (merge categories)
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 10),
                         SegmentedButton<String>(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                           segments: [
                             ButtonSegment(
                               value: 'expense',
@@ -209,6 +242,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                               label: Text(context.t('income_short')),
                             ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                           segments: const [
                             ButtonSegment(value: 'expense', label: Text('Chi')),
@@ -216,6 +250,8 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                           ],
                           selected: {_type},
                           onSelectionChanged: (values) {
@@ -242,6 +278,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                           },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                           decoration: InputDecoration(
                             labelText: context.t('category'),
 =======
@@ -252,6 +289,10 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                           decoration: InputDecoration(
                             labelText: context.t('category'),
 >>>>>>> origin/feature/dashboard
+=======
+                          decoration: InputDecoration(
+                            labelText: context.t('category'),
+>>>>>>> parent of 8a88830 (merge categories)
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -260,14 +301,18 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                           keyboardType: TextInputType.number,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                           decoration: InputDecoration(
                             labelText: context.t('amount'),
                           ),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
                               return context.t('enter_amount');
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                           decoration: const InputDecoration(
@@ -279,6 +324,8 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                             }
                             return null;
                           },
@@ -286,6 +333,7 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                         const SizedBox(height: 12),
                         TextFormField(
                           controller: _noteController,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                           decoration: InputDecoration(
@@ -298,6 +346,10 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                           decoration: InputDecoration(
                             labelText: context.t('note'),
 >>>>>>> origin/feature/dashboard
+=======
+                          decoration: InputDecoration(
+                            labelText: context.t('note'),
+>>>>>>> parent of 8a88830 (merge categories)
                           ),
                         ),
                       ],
@@ -316,19 +368,25 @@ class _TransactionFormPageState extends State<TransactionFormPage> {
                       : const Icon(Icons.check_circle_outline),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                   label: Text(
                     _isSubmitting
                         ? context.t('saving')
                         : context.t('save_transaction'),
                   ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                   label: Text(_isSubmitting ? 'Đang lưu...' : 'Lưu giao dịch'),
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                 ),
               ],
             ),

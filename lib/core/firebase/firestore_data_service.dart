@@ -85,13 +85,17 @@ class FirestoreDataService {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
     return ref
         .where('categoryId', isEqualTo: categoryId)
         .orderBy('transactionDate', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map(TransactionItem.fromDoc).toList());
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     return ref.where('categoryId', isEqualTo: categoryId).snapshots().map((
@@ -104,6 +108,8 @@ class FirestoreDataService {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
   }
 
   Stream<DashboardSummary> watchDashboardSummary() {

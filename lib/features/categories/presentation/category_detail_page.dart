@@ -53,6 +53,7 @@ class CategoryDetailPage extends StatelessWidget {
                   builder: (context, snapshot) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Padding(
@@ -81,6 +82,8 @@ class CategoryDetailPage extends StatelessWidget {
 >>>>>>> origin/feature/categories
 =======
 >>>>>>> origin/feature/dashboard
+=======
+>>>>>>> parent of 8a88830 (merge categories)
                     final transactions = snapshot.data ?? const [];
                     final totalAmount = transactions.fold<double>(
                       0,
