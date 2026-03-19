@@ -236,6 +236,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
 							backgroundColor: colorScheme.primary,
+							foregroundColor: colorScheme.onPrimary,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   child: const Text('Lưu giao dịch'),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "696835799485",
+    "project_id": "g9-expense-tracker",
+    "storage_bucket": "g9-expense-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696835799485:android:e5f0065c801bfb24087ad4",
+        "android_client_info": {
+          "package_name": "com.example.g9_expense_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsE7kpzgQoJPtI6h6y8_xWqSKPSz22NNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

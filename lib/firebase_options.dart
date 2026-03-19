@@ -41,49 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCMVGG8zrBiGjxzS0uD1DHer7Q5XO4xhPE',
-    appId: '1:1099396612955:web:82f9cd4c07fbc8fc6f107e',
-    messagingSenderId: '1099396612955',
-    projectId: 'expense-tracker-th5-20260315',
-    authDomain: 'expense-tracker-th5-20260315.firebaseapp.com',
-    storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
+    apiKey: 'AIzaSyArIo54L_CV5sgp4f0b7xdXovG5Dokm4-A',
+    appId: '1:696835799485:web:93ee672ef8280935087ad4',
+    messagingSenderId: '696835799485',
+    projectId: 'g9-expense-tracker',
+    authDomain: 'g9-expense-tracker.firebaseapp.com',
+    storageBucket: 'g9-expense-tracker.firebasestorage.app',
+    measurementId: 'G-E26PDBHP7M',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBM50tASQCh0pDwtjbNK1uO4qRUlLkzFHA',
-    appId: '1:1099396612955:android:4704b7367deba48d6f107e',
-    messagingSenderId: '1099396612955',
-    projectId: 'expense-tracker-th5-20260315',
-    storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
+    apiKey: 'AIzaSyAsE7kpzgQoJPtI6h6y8_xWqSKPSz22NNw',
+    appId: '1:696835799485:android:e5f0065c801bfb24087ad4',
+    messagingSenderId: '696835799485',
+    projectId: 'g9-expense-tracker',
+    storageBucket: 'g9-expense-tracker.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDseJjZs7vkGyIcZY59jVdm4lm-VHAEKBM',
-    appId: '1:1099396612955:ios:99a12ce76c99b0976f107e',
-    messagingSenderId: '1099396612955',
-    projectId: 'expense-tracker-th5-20260315',
-    storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
-    iosClientId: '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
-    iosBundleId: 'com.example.expenseTrackerApp',
+    apiKey: 'AIzaSyBWluo3rivkqteZscm7T5qy1TJunDNEMJs',
+    appId: '1:696835799485:ios:556239c81c74b184087ad4',
+    messagingSenderId: '696835799485',
+    projectId: 'g9-expense-tracker',
+    storageBucket: 'g9-expense-tracker.firebasestorage.app',
+    iosBundleId: 'com.example.g9ExpenseTracker',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDseJjZs7vkGyIcZY59jVdm4lm-VHAEKBM',
-    appId: '1:1099396612955:ios:99a12ce76c99b0976f107e',
-    messagingSenderId: '1099396612955',
-    projectId: 'expense-tracker-th5-20260315',
-    storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
-    iosClientId: '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
-    iosBundleId: 'com.example.expenseTrackerApp',
+    apiKey: 'AIzaSyBWluo3rivkqteZscm7T5qy1TJunDNEMJs',
+    appId: '1:696835799485:ios:556239c81c74b184087ad4',
+    messagingSenderId: '696835799485',
+    projectId: 'g9-expense-tracker',
+    storageBucket: 'g9-expense-tracker.firebasestorage.app',
+    iosBundleId: 'com.example.g9ExpenseTracker',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCMVGG8zrBiGjxzS0uD1DHer7Q5XO4xhPE',
-    appId: '1:1099396612955:web:946998d31af92bd86f107e',
-    messagingSenderId: '1099396612955',
-    projectId: 'expense-tracker-th5-20260315',
-    authDomain: 'expense-tracker-th5-20260315.firebaseapp.com',
-    storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
+    apiKey: 'AIzaSyArIo54L_CV5sgp4f0b7xdXovG5Dokm4-A',
+    appId: '1:696835799485:web:709e6ffd7eacbc56087ad4',
+    messagingSenderId: '696835799485',
+    projectId: 'g9-expense-tracker',
+    authDomain: 'g9-expense-tracker.firebaseapp.com',
+    storageBucket: 'g9-expense-tracker.firebasestorage.app',
+    measurementId: 'G-KKE9R5TVDB',
   );
 
 }

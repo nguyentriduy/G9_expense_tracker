@@ -188,8 +188,14 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _openAddTransactionScreen,
         backgroundColor: colorScheme.primary,
+      foregroundColor: colorScheme.onPrimary,
         icon: const Icon(Icons.add),
-        label: const Text('Thêm giao dịch'),
+      label: Text(
+        ' Thêm giao dịch',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+        ),
+      ),
       ),
     );
   }

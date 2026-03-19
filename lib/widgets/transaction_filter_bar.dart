@@ -48,6 +48,7 @@ class TransactionFilterBar extends StatelessWidget {
             onPressed: onQuery,
             style: ElevatedButton.styleFrom(
               backgroundColor: colorScheme.primary,
+              foregroundColor: colorScheme.onPrimary,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             ),
             child: const Text('Truy vấn'),
