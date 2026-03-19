@@ -20,7 +20,7 @@ class ExpenseTrackerApp extends StatefulWidget {
 }
 
 class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
-  final _themeController = AppThemeController();
+  final AppThemeController _themeController = AppThemeController();
 
   @override
   void initState() {
@@ -46,16 +46,56 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
           darkTheme: AppTheme.dark(),
           themeMode: _themeController.themeMode,
           initialRoute: AppRoutes.splash,
-          routes: {
-            AppRoutes.splash: (_) => const SplashPage(),
-            AppRoutes.login: (_) => LoginPage(),
-            AppRoutes.register: (_) => RegisterPage(),
-            AppRoutes.forgotPassword: (_) => ForgotPasswordPage(),
-            AppRoutes.home: (_) => HomeShell(themeController: _themeController),
-            AppRoutes.transactionForm: (_) => const TransactionFormPage(),
-            AppRoutes.transactionDetail: (_) => const TransactionDetailPage(),
-            AppRoutes.transactionFilter: (_) => const TransactionFilterPage(),
-            AppRoutes.categoryDetail: (_) => const CategoryDetailPage(),
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case AppRoutes.splash:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const SplashPage(),
+                  settings: settings,
+                );
+              case AppRoutes.login:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const LoginPage(),
+                  settings: settings,
+                );
+              case AppRoutes.register:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const RegisterPage(),
+                  settings: settings,
+                );
+              case AppRoutes.forgotPassword:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const ForgotPasswordPage(),
+                  settings: settings,
+                );
+              case AppRoutes.home:
+                return MaterialPageRoute<void>(
+                  builder: (_) => HomeShell(themeController: _themeController),
+                  settings: settings,
+                );
+              case AppRoutes.transactionForm:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const TransactionFormPage(),
+                  settings: settings,
+                );
+              case AppRoutes.transactionDetail:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const TransactionDetailPage(),
+                  settings: settings,
+                );
+              case AppRoutes.transactionFilter:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const TransactionFilterPage(),
+                  settings: settings,
+                );
+              case AppRoutes.categoryDetail:
+                return MaterialPageRoute<void>(
+                  builder: (_) => const CategoryDetailPage(),
+                  settings: settings,
+                );
+            }
+
+            return null;
           },
         );
       },
