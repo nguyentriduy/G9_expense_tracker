@@ -29,16 +29,29 @@ class TransactionFirebaseService {
   }
 
   Future<List<TransactionModel>> loadTransactions() async {
-    final snapshot = await _collection.orderBy('date', descending: true).get();
-    return snapshot.docs.map((doc) {
-      final data = doc.data();
-      data['id'] = data['id'] ?? doc.id;
-      return TransactionModel.fromJson(data);
-    }).toList();
+    final snapshot =
+        await _collection.orderBy('transactionDate', descending: true).get();
+    return snapshot.docs
+        .map(
+          (doc) => TransactionModel.fromFirestore(
+            doc.data(),
+            id: doc.id,
+          ),
+        )
+        .toList();
   }
 
   Future<void> addOrUpdateTransaction(TransactionModel tx) async {
-    await _collection.doc(tx.id).set(tx.toJson());
+    await _collection.doc(tx.id).set({
+      'type': tx.isIncome ? 'income' : 'expense',
+      'categoryId': '',
+      'categoryName': tx.categoryName,
+      'amount': tx.amount.toDouble(),
+      'note': tx.note ?? '',
+      'transactionDate': Timestamp.fromDate(tx.date),
+      'createdAt': FieldValue.serverTimestamp(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
   }
 
   Future<void> deleteTransaction(String id) async {

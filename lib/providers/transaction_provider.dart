@@ -37,6 +37,28 @@ class TransactionProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
+  int get totalIncome {
+    var sum = 0;
+    for (final tx in _items) {
+      if (tx.isIncome) {
+        sum += tx.amount;
+      }
+    }
+    return sum;
+  }
+
+  int get totalExpense {
+    var sum = 0;
+    for (final tx in _items) {
+      if (!tx.isIncome) {
+        sum += tx.amount;
+      }
+    }
+    return sum;
+  }
+
+  int get balance => totalIncome - totalExpense;
+
   Future<void> loadFromLocal() async {
     _isLoading = true;
     _errorMessage = null;

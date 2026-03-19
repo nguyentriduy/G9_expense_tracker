@@ -1,6 +1,8 @@
-import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/transaction_provider.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -13,18 +15,16 @@ class DashboardPage extends StatelessWidget {
       decimalDigits: 0,
     );
     final colorScheme = Theme.of(context).colorScheme;
-    final dataService = FirestoreDataService();
 
-    return StreamBuilder<DashboardSummary>(
-      stream: dataService.watchDashboardSummary(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    return Consumer<TransactionProvider>(
+      builder: (context, provider, _) {
+        if (provider.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        final summary =
-            snapshot.data ??
-            const DashboardSummary(totalIncome: 0, totalExpense: 0);
+        final income = provider.totalIncome.toDouble();
+        final expense = provider.totalExpense.toDouble();
+        final balance = provider.balance.toDouble();
 
         return ListView(
           padding: const EdgeInsets.all(16),
@@ -50,7 +50,7 @@ class DashboardPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    currency.format(summary.balance),
+                    currency.format(balance),
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -62,13 +62,13 @@ class DashboardPage extends StatelessWidget {
                       _StatPill(
                         icon: Icons.trending_up,
                         label: 'Thu',
-                        value: currency.format(summary.totalIncome),
+                        value: currency.format(income),
                       ),
                       const SizedBox(width: 10),
                       _StatPill(
                         icon: Icons.trending_down,
                         label: 'Chi',
-                        value: currency.format(summary.totalExpense),
+                        value: currency.format(expense),
                       ),
                     ],
                   ),
@@ -83,21 +83,21 @@ class DashboardPage extends StatelessWidget {
             const SizedBox(height: 8),
             _SummaryCard(
               title: 'Tổng thu',
-              value: currency.format(summary.totalIncome),
+              value: currency.format(income),
               icon: Icons.arrow_circle_up_rounded,
               iconColor: colorScheme.primary,
             ),
             const SizedBox(height: 12),
             _SummaryCard(
               title: 'Tổng chi',
-              value: currency.format(summary.totalExpense),
+              value: currency.format(expense),
               icon: Icons.arrow_circle_down_rounded,
               iconColor: colorScheme.error,
             ),
             const SizedBox(height: 12),
             _SummaryCard(
               title: 'Tiền tiết kiệm',
-              value: currency.format(summary.balance),
+              value: currency.format(balance),
               icon: Icons.savings,
               iconColor: colorScheme.tertiary,
             ),

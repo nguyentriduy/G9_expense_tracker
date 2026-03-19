@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class TransactionModel {
@@ -38,6 +39,57 @@ class TransactionModel {
       categoryName: json['categoryName'] as String,
       note: json['note'] as String?,
       date: DateTime.parse(json['date'] as String),
+    );
+  }
+
+  factory TransactionModel.fromFirestore(
+    Map<String, dynamic> data, {
+    required String id,
+  }) {
+    final amountRaw = data['amount'];
+    final amount = amountRaw is int
+        ? amountRaw
+        : (amountRaw is num ? amountRaw.round() : 0);
+
+    bool isIncome;
+    final isIncomeRaw = data['isIncome'];
+    if (isIncomeRaw is bool) {
+      isIncome = isIncomeRaw;
+    } else {
+      final type = (data['type'] as String?) ?? 'expense';
+      isIncome = type == 'income';
+    }
+
+    final rawCategoryName = (data['categoryName'] as String?) ??
+        (data['category'] as String?);
+    final categoryName = rawCategoryName == null ||
+            rawCategoryName.trim().isEmpty
+        ? 'Khác'
+        : rawCategoryName.trim();
+
+    final rawNote = data['note'];
+    String? note;
+    if (rawNote is String && rawNote.trim().isNotEmpty) {
+      note = rawNote.trim();
+    }
+
+    DateTime date;
+    final transactionDate = data['transactionDate'];
+    if (transactionDate is Timestamp) {
+      date = transactionDate.toDate();
+    } else if (data['date'] is String) {
+      date = DateTime.tryParse(data['date'] as String) ?? DateTime.now();
+    } else {
+      date = DateTime.now();
+    }
+
+    return TransactionModel(
+      id: id,
+      amount: amount,
+      isIncome: isIncome,
+      categoryName: categoryName,
+      note: note,
+      date: date,
     );
   }
 }

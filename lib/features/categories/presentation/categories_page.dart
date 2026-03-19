@@ -3,6 +3,9 @@ import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
 import 'package:expense_tracker_app/shared/models/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import 'package:expense_tracker_app/providers/transaction_provider.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
@@ -29,10 +32,9 @@ class CategoriesPage extends StatelessWidget {
           return const Center(child: Text('Chưa có danh mục nào'));
         }
 
-        return StreamBuilder<Map<String, CategoryTransactionStats>>(
-          stream: dataService.watchCategoryTransactionStats(),
-          builder: (context, statsSnapshot) {
-            final statsMap = statsSnapshot.data ?? const {};
+        return Consumer<TransactionProvider>(
+          builder: (context, provider, _) {
+            final transactions = provider.allTransactions;
 
             return ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
@@ -43,19 +45,36 @@ class CategoriesPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 ...categories.map((category) {
-                  final stats = statsMap[category.id];
+                  final relevant = transactions.where((tx) {
+                    final sameCategory = tx.categoryName == category.name;
+                    final sameType =
+                        (category.type == 'expense' && !tx.isIncome) ||
+                        (category.type == 'income' && tx.isIncome);
+                    return sameCategory && sameType;
+                  }).toList();
+
+                  final count = relevant.length;
+                  final totalAmount = relevant.fold<int>(
+                    0,
+                    (sum, tx) => sum + tx.amount,
+                  );
+                  DateTime? lastDate;
+                  if (relevant.isNotEmpty) {
+                    lastDate = relevant
+                        .map((tx) => tx.date)
+                        .reduce((a, b) => a.isAfter(b) ? a : b);
+                  }
+
                   final amountColor = category.type == 'expense'
                       ? Theme.of(context).colorScheme.error
                       : Theme.of(context).colorScheme.primary;
 
-                  final subtitleText = stats == null
+                  final subtitleText = count == 0
                       ? '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • Chưa có giao dịch'
-                      : '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • ${stats.count} giao dịch';
+                      : '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • $count giao dịch';
 
-                  final trailingInfo = stats == null
-                      ? '0 VND'
-                      : currency.format(stats.totalAmount);
-                  final lastDate = stats?.lastTransactionDate;
+                  final trailingInfo =
+                      count == 0 ? '0 VND' : currency.format(totalAmount);
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
