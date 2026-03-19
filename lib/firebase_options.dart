@@ -63,17 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1099396612955',
     projectId: 'expense-tracker-th5-20260315',
     storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
-<<<<<<< HEAD
-<<<<<<< HEAD
-    iosClientId:
-        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
-=======
     iosClientId: '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
->>>>>>> origin/feature/categories
-=======
-    iosClientId:
-        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
->>>>>>> origin/feature/dashboard
     iosBundleId: 'com.example.expenseTrackerApp',
   );
 
@@ -83,17 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1099396612955',
     projectId: 'expense-tracker-th5-20260315',
     storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
-<<<<<<< HEAD
-<<<<<<< HEAD
-    iosClientId:
-        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
-=======
     iosClientId: '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
->>>>>>> origin/feature/categories
-=======
-    iosClientId:
-        '1099396612955-k11rdeisbst7jjmf1bk19vbtk4rmj9od.apps.googleusercontent.com',
->>>>>>> origin/feature/dashboard
     iosBundleId: 'com.example.expenseTrackerApp',
   );
 
@@ -105,13 +85,5 @@ class DefaultFirebaseOptions {
     authDomain: 'expense-tracker-th5-20260315.firebaseapp.com',
     storageBucket: 'expense-tracker-th5-20260315.firebasestorage.app',
   );
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
 
 }
->>>>>>> origin/feature/categories
-=======
-}
->>>>>>> origin/feature/dashboard

@@ -1,15 +1,5 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
-=======
->>>>>>> origin/feature/categories
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
->>>>>>> origin/feature/dashboard
 import 'package:expense_tracker_app/shared/models/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -20,36 +10,12 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataService = FirestoreDataService();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-    final prefs = AppPreferencesScope.of(context);
-    final locale = switch (prefs.languageCode) {
-      'en' => 'en_US',
-      'ja' => 'ja_JP',
-      _ => 'vi_VN',
-    };
-    final currency = NumberFormat.currency(
-      locale: locale,
-      symbol: prefs.currencyCode,
-      decimalDigits: 0,
-    );
-    final datePattern = prefs.languageCode == 'en'
-        ? 'MM/dd/yyyy'
-        : 'dd/MM/yyyy';
-    final dateFormat = DateFormat(datePattern);
-<<<<<<< HEAD
-=======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
       symbol: 'VND',
       decimalDigits: 0,
     );
     final dateFormat = DateFormat('dd/MM/yyyy');
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
 
     return StreamBuilder<List<CategoryItem>>(
       stream: dataService.watchCategories(),
@@ -60,15 +26,7 @@ class CategoriesPage extends StatelessWidget {
 
         final categories = snapshot.data ?? const [];
         if (categories.isEmpty) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-          return Center(child: Text(context.t('no_categories')));
-=======
           return const Center(child: Text('Chưa có danh mục nào'));
->>>>>>> origin/feature/categories
-=======
-          return Center(child: Text(context.t('no_categories')));
->>>>>>> origin/feature/dashboard
         }
 
         return StreamBuilder<Map<String, CategoryTransactionStats>>(
@@ -80,15 +38,7 @@ class CategoriesPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
               children: [
                 Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  context.t('income_expense_categories'),
-=======
                   'Danh mục thu chi',
->>>>>>> origin/feature/categories
-=======
-                  context.t('income_expense_categories'),
->>>>>>> origin/feature/dashboard
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 10),
@@ -99,25 +49,11 @@ class CategoriesPage extends StatelessWidget {
                       : Theme.of(context).colorScheme.primary;
 
                   final subtitleText = stats == null
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-                      ? '${category.type == 'expense' ? context.t('expense') : context.t('income')} • ${context.t('no_activity')}'
-                      : '${category.type == 'expense' ? context.t('expense') : context.t('income')} • ${context.t('transactions_count', {'count': stats.count.toString()})}';
-
-                  final trailingInfo = stats == null
-                      ? '0 ${prefs.currencyCode}'
-<<<<<<< HEAD
-=======
                       ? '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • Chưa có giao dịch'
                       : '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • ${stats.count} giao dịch';
 
                   final trailingInfo = stats == null
                       ? '0 VND'
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
                       : currency.format(stats.totalAmount);
                   final lastDate = stats?.lastTransactionDate;
 
@@ -139,19 +75,7 @@ class CategoriesPage extends StatelessWidget {
                             Text(subtitleText),
                             if (lastDate != null)
                               Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                context.t('latest', {
-                                  'date': dateFormat.format(lastDate),
-                                }),
-=======
                                 'Gần nhất: ${dateFormat.format(lastDate)}',
->>>>>>> origin/feature/categories
-=======
-                                context.t('latest', {
-                                  'date': dateFormat.format(lastDate),
-                                }),
->>>>>>> origin/feature/dashboard
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                           ],

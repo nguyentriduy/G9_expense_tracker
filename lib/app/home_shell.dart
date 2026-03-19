@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
-import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
-=======
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
 import 'package:expense_tracker_app/features/categories/presentation/categories_page.dart';
@@ -10,17 +5,7 @@ import 'package:expense_tracker_app/features/dashboard/presentation/dashboard_pa
 import 'package:expense_tracker_app/features/reports/presentation/reports_page.dart';
 import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
 import 'package:expense_tracker_app/features/transactions/presentation/transactions_page.dart';
->>>>>>> origin/feature/categories
 import 'package:flutter/material.dart';
-=======
-import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
-import 'package:expense_tracker_app/features/settings/presentation/settings_page.dart';
-import 'package:expense_tracker_app/features/dashboard/presentation/dashboard_page.dart';
-import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-import 'package:expense_tracker_app/shared/providers/transaction_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
->>>>>>> origin/feature/dashboard
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key, required this.themeController});
@@ -34,28 +19,6 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _selectedIndex = 0;
 
-<<<<<<< HEAD
-=======
-@override
-  void initState() {
-    super.initState();
-    // LẮNG NGHE DỮ LIỆU TỪ FIREBASE KHI APP MỞ
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      try {
-        final dataService = FirestoreDataService();
-        final provider = Provider.of<TransactionProvider>(context, listen: false);
-        
-        // Đổ dữ liệu từ Stream của Firebase vào Provider
-        dataService.watchTransactions().listen((items) {
-          provider.setTransactions(items);
-        });
-      } catch (e) {
-        debugPrint("Lỗi kết nối Firebase Provider: $e");
-      }
-    });
-  }
-
->>>>>>> origin/feature/dashboard
   static const _titles = [
     'Tổng quan tài chính',
     'Giao dịch',
@@ -65,35 +28,15 @@ class _HomeShellState extends State<HomeShell> {
   ];
 
   List<Widget> get _pages => [
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-=======
     const DashboardPage(),
     const TransactionsPage(),
     const CategoriesPage(),
     const ReportsPage(),
->>>>>>> origin/feature/categories
-=======
-    const DashboardPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
-    const _MinimalTabPage(),
->>>>>>> origin/feature/dashboard
     SettingsPage(themeController: widget.themeController),
   ];
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    return Scaffold(
-      appBar: AppBar(title: Text(_titles[_selectedIndex])),
-      body: _pages[_selectedIndex],
-=======
     final isTransactionTab = _selectedIndex == 1;
 
     return Scaffold(
@@ -121,12 +64,6 @@ class _HomeShellState extends State<HomeShell> {
               label: const Text('Thêm giao dịch'),
             )
           : null,
->>>>>>> origin/feature/categories
-=======
-    return Scaffold(
-      appBar: AppBar(title: Text(_titles[_selectedIndex])),
-      body: _pages[_selectedIndex],
->>>>>>> origin/feature/dashboard
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {
@@ -165,21 +102,3 @@ class _HomeShellState extends State<HomeShell> {
     );
   }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-
-class _MinimalTabPage extends StatelessWidget {
-  const _MinimalTabPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.expand();
-  }
-}
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard

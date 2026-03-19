@@ -1,13 +1,5 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-=======
->>>>>>> origin/feature/categories
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
->>>>>>> origin/feature/dashboard
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -63,21 +55,7 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-        SnackBar(
-          content: Text(
-            context.t('login_failed', {'error': error.message ?? 'unknown'}),
-          ),
-        ),
-<<<<<<< HEAD
-=======
         SnackBar(content: Text('Đăng nhập thất bại: ${error.message}')),
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
       );
     } finally {
       if (mounted) {
@@ -135,44 +113,14 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-        SnackBar(
-          content: Text(
-            context.t('google_login_failed', {
-              'error': error.message ?? 'unknown',
-            }),
-          ),
-        ),
-<<<<<<< HEAD
-=======
         SnackBar(content: Text('Đăng nhập Google thất bại: ${error.message}')),
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
       );
     } catch (error) {
       if (!context.mounted) {
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-        SnackBar(
-          content: Text(
-            context.t('google_login_failed', {'error': error.toString()}),
-          ),
-        ),
-<<<<<<< HEAD
-=======
         SnackBar(content: Text('Đăng nhập Google thất bại: $error')),
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
       );
     } finally {
       if (mounted) {
@@ -226,15 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                              context.t('welcome_back'),
-=======
                               'Chào mừng trở lại',
->>>>>>> origin/feature/categories
-=======
-                              context.t('welcome_back'),
->>>>>>> origin/feature/dashboard
                               style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(
                                     color: Colors.white,
@@ -242,18 +182,8 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                             ),
                             const SizedBox(height: 4),
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            Text(
-                              context.t('login_to_continue'),
-=======
                             const Text(
                               'Đăng nhập để tiếp tục quản lý chi tiêu.',
->>>>>>> origin/feature/categories
-=======
-                            Text(
-                              context.t('login_to_continue'),
->>>>>>> origin/feature/dashboard
                               style: TextStyle(color: Colors.white70),
                             ),
                           ],
@@ -272,49 +202,21 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            context.t('login'),
-=======
                             'Đăng nhập',
->>>>>>> origin/feature/categories
-=======
-                            context.t('login'),
->>>>>>> origin/feature/dashboard
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 12),
                           TextFormField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            decoration: InputDecoration(
-                              labelText: context.t('email'),
-                              prefixIcon: const Icon(Icons.alternate_email),
-=======
                             decoration: const InputDecoration(
                               labelText: 'Email',
                               prefixIcon: Icon(Icons.alternate_email),
->>>>>>> origin/feature/categories
-=======
-                            decoration: InputDecoration(
-                              labelText: context.t('email'),
-                              prefixIcon: const Icon(Icons.alternate_email),
->>>>>>> origin/feature/dashboard
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                return context.t('enter_valid_email');
-=======
                                 return 'Vui lòng nhập email hợp lệ';
->>>>>>> origin/feature/categories
-=======
-                                return context.t('enter_valid_email');
->>>>>>> origin/feature/dashboard
                               }
                               return null;
                             },
@@ -323,34 +225,14 @@ class _LoginPageState extends State<LoginPage> {
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            decoration: InputDecoration(
-                              labelText: context.t('password'),
-                              prefixIcon: const Icon(Icons.lock_outline),
-=======
                             decoration: const InputDecoration(
                               labelText: 'Mật khẩu',
                               prefixIcon: Icon(Icons.lock_outline),
->>>>>>> origin/feature/categories
-=======
-                            decoration: InputDecoration(
-                              labelText: context.t('password'),
-                              prefixIcon: const Icon(Icons.lock_outline),
->>>>>>> origin/feature/dashboard
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.length < 6) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                return context.t('min_password_6');
-=======
                                 return 'Mật khẩu tối thiểu 6 ký tự';
->>>>>>> origin/feature/categories
-=======
-                                return context.t('min_password_6');
->>>>>>> origin/feature/dashboard
                               }
                               return null;
                             },
@@ -370,15 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                                         strokeWidth: 2,
                                       ),
                                     )
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                  : Text(context.t('login')),
-=======
                                   : const Text('Đăng nhập'),
->>>>>>> origin/feature/categories
-=======
-                                  : Text(context.t('login')),
->>>>>>> origin/feature/dashboard
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -392,15 +266,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Icons.g_mobiledata_rounded,
                                 color: colorScheme.primary,
                               ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-                              label: Text(context.t('login_with_google')),
-=======
                               label: const Text('Đăng nhập với Google'),
->>>>>>> origin/feature/categories
-=======
-                              label: Text(context.t('login_with_google')),
->>>>>>> origin/feature/dashboard
                             ),
                           ),
                           Align(
@@ -412,15 +278,7 @@ class _LoginPageState extends State<LoginPage> {
                                   AppRoutes.forgotPassword,
                                 );
                               },
-<<<<<<< HEAD
-<<<<<<< HEAD
-                              child: Text(context.t('forgot_password')),
-=======
                               child: const Text('Quên mật khẩu?'),
->>>>>>> origin/feature/categories
-=======
-                              child: Text(context.t('forgot_password')),
->>>>>>> origin/feature/dashboard
                             ),
                           ),
                         ],
@@ -433,28 +291,12 @@ class _LoginPageState extends State<LoginPage> {
                   alignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    Text(context.t('no_account')),
-=======
                     const Text('Chưa có tài khoản? '),
->>>>>>> origin/feature/categories
-=======
-                    Text(context.t('no_account')),
->>>>>>> origin/feature/dashboard
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.register);
                       },
-<<<<<<< HEAD
-<<<<<<< HEAD
-                      child: Text(context.t('register_now')),
-=======
                       child: const Text('Đăng ký ngay'),
->>>>>>> origin/feature/categories
-=======
-                      child: Text(context.t('register_now')),
->>>>>>> origin/feature/dashboard
                     ),
                   ],
                 ),

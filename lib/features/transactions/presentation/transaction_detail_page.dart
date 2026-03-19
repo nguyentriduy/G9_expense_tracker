@@ -1,14 +1,4 @@
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
-=======
->>>>>>> origin/feature/categories
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
->>>>>>> origin/feature/dashboard
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -29,22 +19,6 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-          title: Text(context.t('delete_transaction')),
-          content: Text(context.t('delete_confirm')),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(context.t('cancel')),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(context.t('delete')),
-<<<<<<< HEAD
-=======
           title: const Text('Xóa giao dịch'),
           content: const Text('Bạn có chắc muốn xóa giao dịch này không?'),
           actions: [
@@ -55,9 +29,6 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
               child: const Text('Xóa'),
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
             ),
           ],
         );
@@ -80,15 +51,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       Navigator.pop(context);
       ScaffoldMessenger.of(
         context,
-<<<<<<< HEAD
-<<<<<<< HEAD
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
-=======
       ).showSnackBar(const SnackBar(content: Text('Đã xóa giao dịch')));
->>>>>>> origin/feature/categories
-=======
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_success'))));
->>>>>>> origin/feature/dashboard
     } on StateError catch (error) {
       if (!mounted) {
         return;
@@ -100,23 +63,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
       if (!mounted) {
         return;
       }
-<<<<<<< HEAD
-<<<<<<< HEAD
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_failed'))));
-=======
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Xóa giao dịch thất bại, vui lòng thử lại'),
         ),
       );
->>>>>>> origin/feature/categories
-=======
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t('delete_failed'))));
->>>>>>> origin/feature/dashboard
     } finally {
       if (mounted) {
         setState(() {
@@ -129,33 +80,6 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   @override
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as TransactionItem?;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-    final prefs = AppPreferencesScope.of(context);
-    final locale = switch (prefs.languageCode) {
-      'en' => 'en_US',
-      'ja' => 'ja_JP',
-      _ => 'vi_VN',
-    };
-    final currency = NumberFormat.currency(
-      locale: locale,
-      symbol: prefs.currencyCode,
-      decimalDigits: 0,
-    );
-    final datePattern = prefs.languageCode == 'en'
-        ? 'MM/dd/yyyy HH:mm'
-        : 'dd/MM/yyyy HH:mm';
-    final dateText = item == null
-        ? ''
-        : DateFormat(datePattern).format(item.transactionDate);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.t('transaction_detail')),
-<<<<<<< HEAD
-=======
     final currency = NumberFormat.currency(
       locale: 'vi_VN',
       symbol: 'VND',
@@ -168,22 +92,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chi tiết giao dịch'),
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
         actions: item == null
             ? null
             : [
                 IconButton(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  tooltip: context.t('delete_transaction'),
-=======
                   tooltip: 'Xóa giao dịch',
->>>>>>> origin/feature/categories
-=======
-                  tooltip: context.t('delete_transaction'),
->>>>>>> origin/feature/dashboard
                   onPressed: _isDeleting
                       ? null
                       : () => _deleteTransaction(item),
@@ -198,15 +111,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
               ],
       ),
       body: item == null
-<<<<<<< HEAD
-<<<<<<< HEAD
-          ? Center(child: Text(context.t('no_transaction_data')))
-=======
           ? const Center(child: Text('Không có dữ liệu giao dịch'))
->>>>>>> origin/feature/categories
-=======
-          ? Center(child: Text(context.t('no_transaction_data')))
->>>>>>> origin/feature/dashboard
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
               children: [
@@ -217,15 +122,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                          context.t('amount'),
-=======
                           'Số tiền',
->>>>>>> origin/feature/categories
-=======
-                          context.t('amount'),
->>>>>>> origin/feature/dashboard
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: 4),
@@ -243,68 +140,26 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                   child: Column(
                     children: [
                       ListTile(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-                        title: Text(context.t('type')),
-                        subtitle: Text(
-                          item.type == 'expense'
-                              ? context.t('expense')
-                              : context.t('income'),
-<<<<<<< HEAD
-=======
                         title: const Text('Loại'),
                         subtitle: Text(
                           item.type == 'expense' ? 'Chi tiêu' : 'Thu nhập',
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        title: Text(context.t('category')),
-=======
                         title: const Text('Danh mục'),
->>>>>>> origin/feature/categories
-=======
-                        title: Text(context.t('category')),
->>>>>>> origin/feature/dashboard
                         subtitle: Text(item.category),
                       ),
                       const Divider(height: 1),
                       ListTile(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        title: Text(context.t('note')),
-                        subtitle: Text(
-                          item.note.isEmpty ? context.t('no_note') : item.note,
-=======
                         title: const Text('Ghi chú'),
                         subtitle: Text(
                           item.note.isEmpty ? 'Không có ghi chú' : item.note,
->>>>>>> origin/feature/categories
-=======
-                        title: Text(context.t('note')),
-                        subtitle: Text(
-                          item.note.isEmpty ? context.t('no_note') : item.note,
->>>>>>> origin/feature/dashboard
                         ),
                       ),
                       const Divider(height: 1),
                       ListTile(
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        title: Text(context.t('transaction_date')),
-=======
                         title: const Text('Ngày giao dịch'),
->>>>>>> origin/feature/categories
-=======
-                        title: Text(context.t('transaction_date')),
->>>>>>> origin/feature/dashboard
                         subtitle: Text(dateText),
                       ),
                     ],
