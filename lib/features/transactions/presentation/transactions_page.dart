@@ -1,20 +1,7 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_data_service.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
-=======
->>>>>>> origin/feature/categories
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
->>>>>>> origin/feature/dashboard
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
-import 'package:expense_tracker_app/core/settings/app_preferences_scope.dart';
->>>>>>> parent of 8a88830 (merge categories)
 import 'package:expense_tracker_app/shared/models/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,13 +11,6 @@ class TransactionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-=======
->>>>>>> parent of 8a88830 (merge categories)
     final prefs = AppPreferencesScope.of(context);
     final locale = switch (prefs.languageCode) {
       'en' => 'en_US',
@@ -46,20 +26,6 @@ class TransactionsPage extends StatelessWidget {
         ? 'MM/dd/yyyy'
         : 'dd/MM/yyyy';
     final dateFormat = DateFormat(datePattern);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    final currency = NumberFormat.currency(
-      locale: 'vi_VN',
-      symbol: 'VND',
-      decimalDigits: 0,
-    );
-    final dateFormat = DateFormat('dd/MM/yyyy');
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
-=======
->>>>>>> parent of 8a88830 (merge categories)
     final dataService = FirestoreDataService();
 
     return StreamBuilder<List<TransactionItem>>(
@@ -71,19 +37,7 @@ class TransactionsPage extends StatelessWidget {
 
         final items = snapshot.data ?? const [];
         if (items.isEmpty) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
           return Center(child: Text(context.t('no_transactions')));
-=======
-          return const Center(child: Text('Chưa có giao dịch nào'));
->>>>>>> origin/feature/categories
-=======
-          return Center(child: Text(context.t('no_transactions')));
->>>>>>> origin/feature/dashboard
-=======
-          return Center(child: Text(context.t('no_transactions')));
->>>>>>> parent of 8a88830 (merge categories)
         }
 
         return ListView.separated(
@@ -115,61 +69,20 @@ class TransactionsPage extends StatelessWidget {
                   context: context,
                   builder: (dialogContext) {
                     return AlertDialog(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                       title: Text(context.t('delete_transaction')),
                       content: Text(context.t('delete_confirm')),
-=======
-                      title: const Text('Xóa giao dịch'),
-                      content: const Text(
-                        'Bạn có chắc muốn xóa giao dịch này không?',
-                      ),
->>>>>>> origin/feature/categories
-=======
-                      title: Text(context.t('delete_transaction')),
-                      content: Text(context.t('delete_confirm')),
->>>>>>> origin/feature/dashboard
-=======
-                      title: Text(context.t('delete_transaction')),
-                      content: Text(context.t('delete_confirm')),
->>>>>>> parent of 8a88830 (merge categories)
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, false);
                           },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                           child: Text(context.t('cancel')),
-=======
-                          child: const Text('Hủy'),
->>>>>>> origin/feature/categories
-=======
-                          child: Text(context.t('cancel')),
->>>>>>> origin/feature/dashboard
-=======
-                          child: Text(context.t('cancel')),
->>>>>>> parent of 8a88830 (merge categories)
                         ),
                         FilledButton(
                           onPressed: () {
                             Navigator.pop(dialogContext, true);
                           },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                           child: Text(context.t('delete')),
-=======
-                          child: const Text('Xóa'),
->>>>>>> origin/feature/categories
-=======
-                          child: Text(context.t('delete')),
->>>>>>> origin/feature/dashboard
-=======
-                          child: Text(context.t('delete')),
->>>>>>> parent of 8a88830 (merge categories)
                         ),
                       ],
                     );
@@ -184,19 +97,7 @@ class TransactionsPage extends StatelessWidget {
                   await dataService.deleteTransaction(item.id);
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_success'))),
-=======
-                      const SnackBar(content: Text('Đã xóa giao dịch')),
->>>>>>> origin/feature/categories
-=======
-                      SnackBar(content: Text(context.t('delete_success'))),
->>>>>>> origin/feature/dashboard
-=======
-                      SnackBar(content: Text(context.t('delete_success'))),
->>>>>>> parent of 8a88830 (merge categories)
                     );
                   }
                   return true;
@@ -210,23 +111,7 @@ class TransactionsPage extends StatelessWidget {
                 } catch (_) {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                       SnackBar(content: Text(context.t('delete_failed'))),
-=======
-                      const SnackBar(
-                        content: Text(
-                          'Xóa giao dịch thất bại, vui lòng thử lại',
-                        ),
-                      ),
->>>>>>> origin/feature/categories
-=======
-                      SnackBar(content: Text(context.t('delete_failed'))),
->>>>>>> origin/feature/dashboard
-=======
-                      SnackBar(content: Text(context.t('delete_failed'))),
->>>>>>> parent of 8a88830 (merge categories)
                     );
                   }
                   return false;

@@ -1,16 +1,5 @@
 import 'package:expense_tracker_app/app/app_router.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import 'package:expense_tracker_app/core/localization/app_localization.dart';
-=======
->>>>>>> origin/feature/categories
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
->>>>>>> origin/feature/dashboard
-=======
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
->>>>>>> parent of 8a88830 (merge categories)
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -76,38 +65,14 @@ class _SplashPageState extends State<SplashPage> {
               ),
               const SizedBox(height: 18),
               Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                 context.t('app_title'),
-=======
-                'Expense Tracker',
->>>>>>> origin/feature/categories
-=======
-                context.t('app_title'),
->>>>>>> origin/feature/dashboard
-=======
-                context.t('app_title'),
->>>>>>> parent of 8a88830 (merge categories)
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                 context.t('app_tagline'),
-=======
-                'Quản lý thu chi chuyên nghiệp cho cá nhân',
->>>>>>> origin/feature/categories
-=======
-                context.t('app_tagline'),
->>>>>>> origin/feature/dashboard
-=======
-                context.t('app_tagline'),
->>>>>>> parent of 8a88830 (merge categories)
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],

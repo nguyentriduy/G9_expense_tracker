@@ -83,33 +83,11 @@ class FirestoreDataService {
       return Stream.value(const []);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/feature/dashboard
-=======
->>>>>>> parent of 8a88830 (merge categories)
     return ref
         .where('categoryId', isEqualTo: categoryId)
         .orderBy('transactionDate', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map(TransactionItem.fromDoc).toList());
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    return ref.where('categoryId', isEqualTo: categoryId).snapshots().map((
-      snapshot,
-    ) {
-      final items = snapshot.docs.map(TransactionItem.fromDoc).toList();
-      items.sort((a, b) => b.transactionDate.compareTo(a.transactionDate));
-      return items;
-    });
->>>>>>> origin/feature/categories
-=======
->>>>>>> origin/feature/dashboard
-=======
->>>>>>> parent of 8a88830 (merge categories)
   }
 
   Stream<DashboardSummary> watchDashboardSummary() {
