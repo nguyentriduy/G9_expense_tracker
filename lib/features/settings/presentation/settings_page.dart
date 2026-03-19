@@ -1,13 +1,17 @@
-import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key, required this.themeController});
+  const SettingsPage({
+    super.key,
+    required this.themeController,
+    this.onSignedOut,
+  });
 
   final AppThemeController themeController;
+  final Future<void> Function(BuildContext context)? onSignedOut;
 
   @override
   Widget build(BuildContext context) {
@@ -103,19 +107,30 @@ class SettingsPage extends StatelessWidget {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
               onTap: () async {
-                await GoogleSignIn().signOut();
-                await FirebaseAuth.instance.signOut();
-                if (!context.mounted) {
-                  return;
+                try {
+                  try {
+                    await GoogleSignIn().signOut();
+                  } catch (_) {
+                    // Bỏ qua lỗi Google Sign In
+                  }
+                  await FirebaseAuth.instance.signOut();
+                  if (!context.mounted) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Đã đăng xuất thành công')),
+                  );
+                  if (onSignedOut != null) {
+                    await onSignedOut!(context);
+                  }
+                } catch (e) {
+                  if (!context.mounted) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Lỗi đăng xuất: $e')));
                 }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Đã đăng xuất thành công')),
-                );
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  AppRoutes.login,
-                  (route) => false,
-                );
               },
             ),
           ],

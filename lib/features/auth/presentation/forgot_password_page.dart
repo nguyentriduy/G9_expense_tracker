@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -38,20 +37,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.t('reset_sent'))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Đã gửi email đặt lại mật khẩu')),
+      );
       Navigator.pop(context);
     } on FirebaseAuthException catch (error) {
       if (!context.mounted) {
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            context.t('send_failed', {'error': error.message ?? 'unknown'}),
-          ),
-        ),
+        SnackBar(content: Text('Gửi email thất bại: ${error.message}')),
       );
     } finally {
       if (mounted) {
@@ -65,7 +60,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t('reset_password'))),
+      appBar: AppBar(title: const Text('Đặt lại mật khẩu')),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -74,12 +69,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               padding: const EdgeInsets.all(16),
               children: [
                 Text(
-                  context.t('recover_account'),
+                  'Khôi phục tài khoản',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  context.t('reset_desc'),
+                  'Nhập email đăng ký. Chúng tôi sẽ gửi liên kết đặt lại mật khẩu đến bạn.',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
@@ -93,16 +88,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           TextFormField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: context.t('enter_email'),
-                              prefixIcon: const Icon(
+                            decoration: const InputDecoration(
+                              labelText: 'Nhập email',
+                              prefixIcon: Icon(
                                 Icons.mark_email_unread_outlined,
                               ),
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
-                                return context.t('enter_valid_email');
+                                return 'Vui lòng nhập email hợp lệ';
                               }
                               return null;
                             },
@@ -122,7 +117,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         strokeWidth: 2,
                                       ),
                                     )
-                                  : Text(context.t('send_request')),
+                                  : const Text('Gửi yêu cầu'),
                             ),
                           ),
                         ],

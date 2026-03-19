@@ -1,6 +1,5 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
-import 'package:expense_tracker_app/core/localization/app_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -58,11 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            context.t('register_failed', {'error': error.message ?? 'unknown'}),
-          ),
-        ),
+        SnackBar(content: Text('Đăng ký thất bại: ${error.message}')),
       );
     } finally {
       if (mounted) {
@@ -76,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t('create_account'))),
+      appBar: AppBar(title: const Text('Tạo tài khoản')),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -85,12 +80,12 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.all(16),
               children: [
                 Text(
-                  context.t('start_finance_journey'),
+                  'Bắt đầu hành trình tài chính',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  context.t('register_sync_desc'),
+                  'Tạo tài khoản để đồng bộ dữ liệu thu chi trên Firebase.',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
@@ -103,13 +98,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           TextFormField(
                             controller: _nameController,
-                            decoration: InputDecoration(
-                              labelText: context.t('full_name'),
-                              prefixIcon: const Icon(Icons.person_outline),
+                            decoration: const InputDecoration(
+                              labelText: 'Họ tên',
+                              prefixIcon: Icon(Icons.person_outline),
                             ),
                             validator: (value) {
                               if ((value?.trim().isEmpty ?? true)) {
-                                return context.t('enter_full_name');
+                                return 'Vui lòng nhập họ tên';
                               }
                               return null;
                             },
@@ -118,14 +113,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: context.t('email'),
-                              prefixIcon: const Icon(Icons.alternate_email),
+                            decoration: const InputDecoration(
+                              labelText: 'Email',
+                              prefixIcon: Icon(Icons.alternate_email),
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.isEmpty || !text.contains('@')) {
-                                return context.t('enter_valid_email');
+                                return 'Vui lòng nhập email hợp lệ';
                               }
                               return null;
                             },
@@ -134,14 +129,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: context.t('password'),
-                              prefixIcon: const Icon(Icons.lock_outline),
+                            decoration: const InputDecoration(
+                              labelText: 'Mật khẩu',
+                              prefixIcon: Icon(Icons.lock_outline),
                             ),
                             validator: (value) {
                               final text = value?.trim() ?? '';
                               if (text.length < 6) {
-                                return context.t('min_password_6');
+                                return 'Mật khẩu tối thiểu 6 ký tự';
                               }
                               return null;
                             },
@@ -161,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         strokeWidth: 2,
                                       ),
                                     )
-                                  : Text(context.t('create_account')),
+                                  : const Text('Tạo tài khoản'),
                             ),
                           ),
                         ],
