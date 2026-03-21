@@ -50,6 +50,14 @@ class FirestoreBootstrapService {
         'isDefault': true,
       },
       {
+        'id': 'expense_entertainment',
+        'name': 'Giải trí',
+        'type': 'expense',
+        'icon': 'local_activity',
+        'color': 0xFF7E57C2,
+        'isDefault': true,
+      },
+      {
         'id': 'expense_other',
         'name': 'Khác',
         'type': 'expense',

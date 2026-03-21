@@ -32,7 +32,6 @@ class ReportsPage extends StatelessWidget {
 
         final categoryEntries = categoryTotals.entries.toList()
           ..sort((a, b) => b.value.compareTo(a.value));
-        final topCategories = categoryEntries.take(5).toList();
 
         // Monthly totals (by month/year)
         final Map<DateTime, int> monthTotals = {};
@@ -68,7 +67,7 @@ class ReportsPage extends StatelessWidget {
                     if (totalExpense == 0)
                       const Text('Chưa có dữ liệu chi tiêu')
                     else ...[
-                      for (final entry in topCategories) ...[
+                      for (final entry in categoryEntries) ...[
                         _PercentBar(
                           label: entry.key,
                           percent: entry.value / totalExpense,

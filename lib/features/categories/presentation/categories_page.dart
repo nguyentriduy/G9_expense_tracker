@@ -36,6 +36,23 @@ class CategoriesPage extends StatelessWidget {
           builder: (context, provider, _) {
             final transactions = provider.allTransactions;
 
+            int totalForCategory(CategoryItem category) {
+              final relevant = transactions.where((tx) {
+                final sameCategory = tx.categoryName == category.name;
+                final sameType =
+                    (category.type == 'expense' && !tx.isIncome) ||
+                    (category.type == 'income' && tx.isIncome);
+                return sameCategory && sameType;
+              }).toList();
+
+              return relevant.fold<int>(0, (sum, tx) => sum + tx.amount);
+            }
+
+            final sortedCategories = categories.toList()
+              ..sort(
+                (a, b) => totalForCategory(b).compareTo(totalForCategory(a)),
+              );
+
             return ListView(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
               children: [
@@ -44,7 +61,7 @@ class CategoriesPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 10),
-                ...categories.map((category) {
+                ...sortedCategories.map((category) {
                   final relevant = transactions.where((tx) {
                     final sameCategory = tx.categoryName == category.name;
                     final sameType =
@@ -73,8 +90,9 @@ class CategoriesPage extends StatelessWidget {
                       ? '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • Chưa có giao dịch'
                       : '${category.type == 'expense' ? 'Chi tiêu' : 'Thu nhập'} • $count giao dịch';
 
-                  final trailingInfo =
-                      count == 0 ? '0 VND' : currency.format(totalAmount);
+                  final trailingInfo = count == 0
+                      ? '0 VND'
+                      : currency.format(totalAmount);
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
