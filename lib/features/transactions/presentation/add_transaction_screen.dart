@@ -30,6 +30,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     'Mua sắm',
     'Đi lại',
     'Giải trí',
+    'Khác',
   ];
 
   final List<String> _incomeCategories = [

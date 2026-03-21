@@ -1,7 +1,9 @@
 import 'package:expense_tracker_app/core/theme/app_theme_controller.dart';
+import 'package:expense_tracker_app/providers/transaction_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -108,6 +110,13 @@ class SettingsPage extends StatelessWidget {
               ),
               onTap: () async {
                 try {
+                    // Clear local transaction state before signing out so
+                    // data from one account doesn't appear in another.
+                    try {
+                      await context.read<TransactionProvider>().clearAll();
+                    } catch (_) {
+                      // Ignore provider errors during sign out.
+                    }
                   try {
                     await GoogleSignIn().signOut();
                   } catch (_) {

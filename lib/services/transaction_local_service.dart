@@ -30,4 +30,9 @@ class TransactionLocalService {
     final raw = jsonEncode(jsonList);
     await prefs.setString(_storageKey, raw);
   }
+
+  Future<void> clear() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_storageKey);
+  }
 }

@@ -50,6 +50,14 @@ class FirestoreBootstrapService {
         'isDefault': true,
       },
       {
+        'id': 'expense_other',
+        'name': 'Khác',
+        'type': 'expense',
+        'icon': 'category',
+        'color': 0xFF607D8B,
+        'isDefault': true,
+      },
+      {
         'id': 'income_salary',
         'name': 'Lương',
         'type': 'income',

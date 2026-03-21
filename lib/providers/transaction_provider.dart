@@ -59,6 +59,18 @@ class TransactionProvider extends ChangeNotifier {
 
   int get balance => totalIncome - totalExpense;
 
+  Future<void> clearAll() async {
+    _items.clear();
+    _fromDate = null;
+    _toDate = null;
+    _kindFilter = TransactionKindFilter.all;
+    _searchKeyword = '';
+    _isLoading = false;
+    _errorMessage = null;
+    notifyListeners();
+    await _localService.clear();
+  }
+
   Future<void> loadFromLocal() async {
     _isLoading = true;
     _errorMessage = null;

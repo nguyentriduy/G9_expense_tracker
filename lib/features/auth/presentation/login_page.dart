@@ -1,9 +1,11 @@
 import 'package:expense_tracker_app/app/app_router.dart';
 import 'package:expense_tracker_app/core/firebase/firestore_bootstrap_service.dart';
+import 'package:expense_tracker_app/providers/transaction_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -43,6 +45,8 @@ class _LoginPageState extends State<LoginPage> {
       final user = credential.user;
       if (user != null) {
         await FirestoreBootstrapService().ensureUserStructure(user);
+        // Reload transactions for this account so data is scoped per user.
+        await context.read<TransactionProvider>().loadFromLocal();
       }
 
       if (!context.mounted) {
@@ -102,6 +106,8 @@ class _LoginPageState extends State<LoginPage> {
       final user = credential.user;
       if (user != null) {
         await FirestoreBootstrapService().ensureUserStructure(user);
+        // Reload transactions for this account so data is scoped per user.
+        await context.read<TransactionProvider>().loadFromLocal();
       }
 
       if (!context.mounted) {
